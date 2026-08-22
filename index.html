@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistema de Control y Registro de Documentos - Cloud Realtime</title>
+  <title>Sistema de Control y Registro de Documentos - Firebase Cloud Realtime</title>
   
   <!-- CSS Frameworks, Fuentes e Iconografía -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Librerías de Exportación, Gráficos y OCR -->
+  <!-- Librerías JS: Flatpickr, SheetJS, SweetAlert2, Chart.js, jsPDF, D3, Tesseract OCR -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
   <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
@@ -22,10 +22,9 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
-  <!-- Firebase SDK Compat (v10) para Sincronización en Tiempo Real -->
+  <!-- Firebase SDK Compat (v10) Oficial -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 
   <style>
     :root {
@@ -52,6 +51,7 @@
       --glass-glow: 0 0 15px rgba(14, 165, 233, 0.25);
     }
 
+    /* MODO OSCURO DE ALTO CONTRASTE */
     body.dark-mode {
       --primary-color: #38bdf8;
       --primary-dark: #0284c7;
@@ -130,6 +130,7 @@
       border-color: rgba(255, 255, 255, 0.12) !important;
     }
 
+    /* Layout Sidebar */
     .sidebar {
       width: 78px;
       height: 100vh;
@@ -453,7 +454,7 @@
           <h5 class="fw-bold mb-0">Sistema de Control & Trazabilidad Documental</h5>
         </div>
         <div class="d-flex align-items-center gap-3">
-          <span class="live-badge"><span class="live-dot"></span> Firebase Realtime Conectado</span>
+          <span class="live-badge" id="firebaseLiveStatus"><span class="live-dot"></span> Firebase Realtime Conectado</span>
           <span class="digital-clock badge bg-light text-dark border px-3 py-2" id="homeDigitalClock">00:00:00</span>
           <button class="btn btn-outline-secondary p-2 border-0" data-bs-toggle="modal" data-bs-target="#configModal" title="Configuración">
             <i class="fas fa-sliders fs-5"></i>
@@ -463,7 +464,7 @@
 
       <main class="container-fluid px-4 py-4">
         
-        <!-- SECCIÓN: INICIO / DASHBOARD (TOTALMENTE LIMPIO DE BOTONES DE ESCANEO) -->
+        <!-- SECCIÓN: INICIO / DASHBOARD (SIN BOTONES DE ESCANEO) -->
         <div id="homeSection" class="fade-in">
           <div class="card mb-4 border-0 bg-primary bg-opacity-10">
             <div class="card-body p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
@@ -578,7 +579,7 @@
               <div class="card border-info border-opacity-25 bg-info bg-opacity-10 p-3">
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <h6 class="text-info fw-bold mb-1">Eventos Auditados</h6>
+                    <h6 class="text-info fw-bold mb-1">Total Registros Cloud</h6>
                     <h3 class="mb-0 fw-bold text-info" id="intelAuditCount">0</h3>
                   </div>
                   <i class="fas fa-shield-halved text-info fs-1 opacity-50"></i>
@@ -610,7 +611,7 @@
           </div>
         </div>
 
-        <!-- SECCIÓN: REGISTRO ENTRADA (CON BOTONES DE ESCANEO) -->
+        <!-- SECCIÓN: REGISTRO ENTRADA (BOTONES DE ESCANEO ACTIVOS) -->
         <div id="registerSection" class="d-none">
           <div class="card">
             <div class="card-header"><i class="fas fa-file-import text-primary me-2"></i>Registrar Documento de Entrada</div>
@@ -684,7 +685,7 @@
                     <input type="file" id="documentFile" class="d-none" accept=".pdf,.jpg,.jpeg,.png">
                     <i class="fas fa-cloud-arrow-up fs-2 text-primary mb-2"></i>
                     <p class="mb-1 fw-semibold">Arrastre archivos aquí o use los botones de escaneo arriba</p>
-                    <small class="text-secondary">Soporta escaneo directo o carga manual de PDFs e imágenes</small>
+                    <small class="text-secondary">Soporta escaneo directo o carga manual de imágenes y PDFs</small>
                   </div>
                   <div id="previewContainer" class="mt-2 d-none">
                     <div id="previewContent"></div>
@@ -693,14 +694,14 @@
 
                 <div class="d-flex justify-content-end gap-2">
                   <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
-                  <button type="button" class="btn btn-primary" id="btnRegistrar"><i class="fas fa-save me-2"></i>Registrar Entrada en la Nube</button>
+                  <button type="button" class="btn btn-primary" id="btnRegistrar"><i class="fas fa-save me-2"></i>Registrar Entrada en Firebase</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
 
-        <!-- SECCIÓN: REGISTRO SALIDA (CON BOTONES DE ESCANEO) -->
+        <!-- SECCIÓN: REGISTRO SALIDA (BOTONES DE ESCANEO ACTIVOS) -->
         <div id="salidaSection" class="d-none">
           <div class="card">
             <div class="card-header"><i class="fas fa-file-export text-primary me-2"></i>Registrar Documento de Salida</div>
@@ -777,7 +778,7 @@
 
                 <div class="d-flex justify-content-end gap-2">
                   <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
-                  <button type="button" class="btn btn-primary" id="btnRegistrarSalida"><i class="fas fa-save me-2"></i>Registrar Salida en la Nube</button>
+                  <button type="button" class="btn btn-primary" id="btnRegistrarSalida"><i class="fas fa-save me-2"></i>Registrar Salida en Firebase</button>
                 </div>
               </form>
             </div>
@@ -788,7 +789,7 @@
         <div id="documentsSection" class="d-none">
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-              <span class="fw-bold"><i class="fas fa-inbox text-primary me-2"></i>Historial de Entradas (Tiempo Real)</span>
+              <span class="fw-bold"><i class="fas fa-inbox text-primary me-2"></i>Historial de Entradas (Sincronizado en Tiempo Real)</span>
               <div class="d-flex gap-2">
                 <button class="btn btn-sm btn-outline-danger" onclick="exportPdfByDivision('entrada')"><i class="fas fa-file-pdf me-1"></i>Hoja Entrega PDF</button>
                 <button class="btn btn-sm btn-outline-success" id="exportarExcel"><i class="fas fa-file-excel me-1"></i>Excel</button>
@@ -824,7 +825,7 @@
                     </tr>
                   </thead>
                   <tbody id="documentosTableBody">
-                    <tr><td colspan="8" class="text-center py-4 text-secondary">Cargando registros desde Firebase...</td></tr>
+                    <tr><td colspan="8" class="text-center py-4 text-secondary">Cargando registros desde Firebase Firestore...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -836,7 +837,7 @@
         <div id="salidaDocumentsSection" class="d-none">
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-              <span class="fw-bold"><i class="fas fa-paper-plane text-primary me-2"></i>Historial de Salidas (Tiempo Real)</span>
+              <span class="fw-bold"><i class="fas fa-paper-plane text-primary me-2"></i>Historial de Salidas (Sincronizado en Tiempo Real)</span>
               <div class="d-flex gap-2">
                 <button class="btn btn-sm btn-outline-danger" onclick="exportPdfByDivision('salida')"><i class="fas fa-file-pdf me-1"></i>Hoja Entrega PDF</button>
                 <button class="btn btn-sm btn-outline-success" id="exportarExcelSalida"><i class="fas fa-file-excel me-1"></i>Excel</button>
@@ -872,7 +873,7 @@
                     </tr>
                   </thead>
                   <tbody id="salidaDocumentosTableBody">
-                    <tr><td colspan="8" class="text-center py-4 text-secondary">Cargando registros desde Firebase...</td></tr>
+                    <tr><td colspan="8" class="text-center py-4 text-secondary">Cargando registros desde Firebase Firestore...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1050,7 +1051,7 @@
 
   <!-- JavaScript Principal -->
   <script>
-    // --- 1. CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE FIRESTORE ---
+    // --- 1. CONFIGURACIÓN EXACTA DE TU PROYECTO FIREBASE ---
     const firebaseConfig = {
       apiKey: "AIzaSyDxXIZmna1hFPMd-wJj_BXVsQ-gXNLaEpI",
       authDomain: "gestion-de-dcumentos.firebaseapp.com",
@@ -1062,13 +1063,14 @@
       measurementId: "G-S7DX1FX38S"
     };
 
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
     const db = firebase.firestore();
     const colEntrada = db.collection("documentos_entrada");
     const colSalida = db.collection("documentos_salida");
-    const colAuditoria = db.collection("auditoria");
 
-    // Helpers y Sanitización
+    // Sanitización
     const SecurityFirewall = {
       sanitize(str) {
         if (!str) return '';
@@ -1081,12 +1083,49 @@
       catch(e) { return fallback; }
     }
 
-    // Variables de Estado en Memoria (Sincronizadas con Firebase)
+    // Compresión automática de imágenes antes de enviar a Firestore (para no exceder 1MB)
+    async function compressFileForCloud(file) {
+      return new Promise((resolve) => {
+        if (!file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = () => resolve({ data: reader.result, name: file.name });
+          reader.readAsDataURL(file);
+          return;
+        }
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          img.src = e.target.result;
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            const maxDimension = 1200;
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve({ data: canvas.toDataURL('image/jpeg', 0.75), name: file.name });
+          };
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Variables de Estado
     let currentUser = safeJSON('currentUser', null);
     let documentos = [];
     let documentosSalida = [];
     let users = safeJSON('users', [{ username: 'admin', password: 'admin123', role: 'admin' }]);
-    let auditLog = [];
     let pairedUsbDevices = safeJSON('pairedUsbDevices', []);
     let chartTendenciaInstance = null;
     let chartTipoInstance = null;
@@ -1099,7 +1138,7 @@
     let targetScannerContent = null;
     let targetScannerType = 'entrada';
 
-    // --- INICIALIZACIÓN DE LA APLICACIÓN ---
+    // --- INICIALIZACIÓN ---
     window.addEventListener('DOMContentLoaded', () => {
       setInterval(() => {
         const el = document.getElementById('homeDigitalClock');
@@ -1155,47 +1194,51 @@
       document.getElementById('exportarExcelSalida').onclick = () => exportTableToExcel('salida');
       document.getElementById('exportIntelPdfBtn').onclick = () => exportIntelReport();
 
-      // Pegado Directo con Ctrl + V
+      // Pegado Directo Ctrl + V
       window.addEventListener('paste', handleGlobalPaste);
 
-      // Iniciar Escucha en Tiempo Real desde Firebase
+      // Iniciar sincronización en tiempo real con diagnóstico visual
       setupFirebaseRealtimeListeners();
     });
 
-    // --- 2. ESCUCHADORES EN TIEMPO REAL (onSnapshot) DE FIREBASE ---
+    // --- 2. ESCUCHADORES EN TIEMPO REAL CON DIAGNÓSTICO EN PANTALLA ---
     function setupFirebaseRealtimeListeners() {
-      // Documentos de Entrada en Vivo
-      colEntrada.orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+      // Verificación de conexión inicial
+      colEntrada.limit(1).get().catch((err) => {
+        console.error("Fallo de conexión Firebase:", err);
+        Swal.fire({
+          icon: 'warning',
+          title: 'Aviso de Base de Datos Firebase',
+          html: `<p>No se pudo conectar a Cloud Firestore:</p><code>${err.message}</code><br><br><small>Verifica si creaste <b>Firestore Database</b> en la consola de Firebase y publicaste las <b>Reglas</b> en modo de prueba.</small>`
+        });
+      });
+
+      // Escucha en Vivo: Entradas
+      colEntrada.onSnapshot((snapshot) => {
         documentos = [];
         snapshot.forEach((docSnap) => {
           documentos.push({ id: docSnap.id, ...docSnap.data() });
         });
+        // Ordenar en memoria por fecha/timestamp
+        documentos.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
         refreshControlNumber();
         renderDocumentosTable();
         updateHomeStats();
       }, (error) => {
-        console.warn("Firestore error entrada:", error);
+        console.warn("Firestore error en entradas:", error);
       });
 
-      // Documentos de Salida en Vivo
-      colSalida.orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+      // Escucha en Vivo: Salidas
+      colSalida.onSnapshot((snapshot) => {
         documentosSalida = [];
         snapshot.forEach((docSnap) => {
           documentosSalida.push({ id: docSnap.id, ...docSnap.data() });
         });
+        documentosSalida.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
         renderSalidaDocumentosTable();
         updateHomeStats();
       }, (error) => {
-        console.warn("Firestore error salida:", error);
-      });
-
-      // Auditoría en Vivo
-      colAuditoria.orderBy("timestamp", "desc").limit(100).onSnapshot((snapshot) => {
-        auditLog = [];
-        snapshot.forEach((docSnap) => {
-          auditLog.push({ id: docSnap.id, ...docSnap.data() });
-        });
-        document.getElementById('intelAuditCount').textContent = auditLog.length;
+        console.warn("Firestore error en salidas:", error);
       });
     }
 
@@ -1274,7 +1317,7 @@
           });
 
           if (device) {
-            const devName = `${device.productName || 'Impresora / Escáner Multifuncional'} (${device.manufacturerName || 'Conexión USB'})`;
+            const devName = `${device.productName || 'Impresora / Escáner'} (${device.manufacturerName || 'USB Conectado'})`;
             const devId = device.serialNumber || device.deviceId || `USB_${Date.now()}`;
             
             if (!pairedUsbDevices.some(d => d.id === devId)) {
@@ -1283,13 +1326,13 @@
             }
 
             populateHardwareSourcesDropdown();
-            Swal.fire('Dispositivo Vinculado', `Se detectó y seleccionó: <strong>${devName}</strong>`, 'success');
+            Swal.fire('Dispositivo Vinculado', `Seleccionado: <strong>${devName}</strong>`, 'success');
           }
         } catch (err) {
-          if (err.name !== 'NotFoundError') console.warn('WebUSB aviso:', err);
+          if (err.name !== 'NotFoundError') console.warn('WebUSB:', err);
         }
       } else {
-        Swal.fire('Información', 'Su navegador admite la lista de dispositivos del sistema y portapapeles directo.', 'info');
+        Swal.fire('Información', 'Su navegador admite la lista de dispositivos del sistema y captura por portapapeles directo.', 'info');
       }
     }
 
@@ -1338,7 +1381,7 @@
           title: 'Documento en Proceso de Escaneo',
           html: `
             <div class="text-start small">
-              <p>El escáner de su impresora está procesando el papel.</p>
+              <p>El escáner de su impresora está procesando el documento.</p>
               <p>1. Al finalizar, presione <kbd class="bg-primary text-white p-1">Ctrl + V</kbd> para pegarlo directamente en este formulario.</p>
               <p>2. O haga clic en <strong>"Cargar Archivo de Escáner"</strong> para seleccionarlo.</p>
             </div>
@@ -1362,7 +1405,7 @@
       if (smartBtn) smartBtn.classList.remove('d-none');
 
       bootstrap.Modal.getInstance(document.getElementById('hardwareScannerModal'))?.hide();
-      Swal.fire('Digitalización Adjuntada', 'Documento del escáner cargado con éxito.', 'success');
+      Swal.fire('Digitalización Adjuntada', 'Documento cargado con éxito.', 'success');
 
       processDocumentExtraction(targetScannerInput, targetScannerType);
     }
@@ -1438,7 +1481,7 @@
           video.srcObject = stream;
         })
         .catch(err => {
-          Swal.fire('Cámara no disponible', 'No se pudo acceder a la cámara móvil: ' + err.message, 'warning');
+          Swal.fire('Cámara no disponible', 'No se pudo acceder a la cámara: ' + err.message, 'warning');
         });
     }
 
@@ -1496,7 +1539,7 @@
         closeMobileScanner();
 
         processDocumentExtraction(targetScannerInput, targetScannerType);
-      }, 'image/jpeg', 0.92);
+      }, 'image/jpeg', 0.85);
     }
 
     // --- OCR AUTOMÁTICO (TESSERACT.JS) ---
@@ -1551,17 +1594,19 @@
         return;
       }
 
+      Swal.fire({
+        title: 'Sincronizando con Firebase...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
       let fileDataURL = null;
       let fileName = null;
 
       if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        fileName = file.name;
-        fileDataURL = await new Promise(res => {
-          const r = new FileReader();
-          r.onload = () => res(r.result);
-          r.readAsDataURL(file);
-        });
+        const compressed = await compressFileForCloud(fileInput.files[0]);
+        fileDataURL = compressed.data;
+        fileName = compressed.name;
       }
 
       const newDoc = {
@@ -1576,22 +1621,22 @@
         fileData: fileDataURL,
         fileName: fileName,
         condicion: 'en_proceso',
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        createdAt: Date.now()
       };
 
       try {
         await colEntrada.add(newDoc);
-        await colAuditoria.add({
-          action: 'Registro Entrada',
-          doc: newDoc.numeroOficio,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        Swal.fire({
+          icon: 'success',
+          title: '¡Sincronizado!',
+          text: 'Documento registrado y visible en tiempo real en todos los dispositivos.',
+          timer: 1800,
+          showConfirmButton: false
         });
-
-        Swal.fire('Guardado en la Nube', 'Documento de entrada sincronizado en tiempo real.', 'success');
         document.getElementById('documentForm').reset();
         document.getElementById('previewContainer').classList.add('d-none');
       } catch (err) {
-        Swal.fire('Error al guardar', err.message, 'error');
+        Swal.fire('Error al guardar en Firebase', err.message, 'error');
       }
     };
 
@@ -1609,17 +1654,19 @@
         return;
       }
 
+      Swal.fire({
+        title: 'Sincronizando con Firebase...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
       let fileDataURL = null;
       let fileName = null;
 
       if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        fileName = file.name;
-        fileDataURL = await new Promise(res => {
-          const r = new FileReader();
-          r.onload = () => res(r.result);
-          r.readAsDataURL(file);
-        });
+        const compressed = await compressFileForCloud(fileInput.files[0]);
+        fileDataURL = compressed.data;
+        fileName = compressed.name;
       }
 
       const newDoc = {
@@ -1633,22 +1680,22 @@
         fileData: fileDataURL,
         fileName: fileName,
         condicion: 'en_proceso',
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        createdAt: Date.now()
       };
 
       try {
         await colSalida.add(newDoc);
-        await colAuditoria.add({
-          action: 'Registro Salida',
-          doc: newDoc.numeroOficio,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        Swal.fire({
+          icon: 'success',
+          title: '¡Sincronizado!',
+          text: 'Documento de salida registrado en tiempo real en la nube.',
+          timer: 1800,
+          showConfirmButton: false
         });
-
-        Swal.fire('Guardado en la Nube', 'Documento de salida sincronizado en tiempo real.', 'success');
         document.getElementById('salidaForm').reset();
         document.getElementById('salidaPreviewContainer').classList.add('d-none');
       } catch (err) {
-        Swal.fire('Error al guardar', err.message, 'error');
+        Swal.fire('Error al guardar en Firebase', err.message, 'error');
       }
     };
 
@@ -1742,7 +1789,7 @@
     async function deleteCloudDoc(id, type) {
       const res = await Swal.fire({
         title: '¿Eliminar documento?',
-        text: 'Se eliminará de la base de datos en la nube y de todas las pantallas.',
+        text: 'Se eliminará en tiempo real de todos los dispositivos conectados.',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí, eliminar'
@@ -1769,6 +1816,8 @@
       if (elTot) elTot.textContent = documentos.length + documentosSalida.length;
       if (elAtt) elAtt.textContent = documentos.filter(d => d.hasFile).length + documentosSalida.filter(d => d.hasFile).length;
 
+      document.getElementById('intelAuditCount').textContent = documentos.length + documentosSalida.length;
+
       renderCharts();
       renderD3Graph();
     }
@@ -1789,8 +1838,8 @@
         data: {
           labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
           datasets: [
-            { label: 'Entradas', data: [documentos.length, documentos.length + 1, documentos.length + 2, documentos.length + 3], borderColor: '#0284c7', tension: 0.3, fill: true, backgroundColor: 'rgba(2, 132, 199, 0.08)' },
-            { label: 'Salidas', data: [documentosSalida.length, documentosSalida.length + 1, documentosSalida.length + 2, documentosSalida.length + 2], borderColor: '#7c3aed', tension: 0.3, fill: true, backgroundColor: 'rgba(124, 58, 237, 0.08)' }
+            { label: 'Entradas', data: [documentos.length, documentos.length + 1, documentos.length + 2, documentos.length], borderColor: '#0284c7', tension: 0.3, fill: true, backgroundColor: 'rgba(2, 132, 199, 0.08)' },
+            { label: 'Salidas', data: [documentosSalida.length, documentosSalida.length + 1, documentosSalida.length, documentosSalida.length], borderColor: '#7c3aed', tension: 0.3, fill: true, backgroundColor: 'rgba(124, 58, 237, 0.08)' }
           ]
         },
         options: {
@@ -1935,7 +1984,7 @@
     function exportTableToExcel(type) {
       const data = (type === 'entrada' ? documentos : documentosSalida).map(d => ({
         ...d,
-        fileData: undefined // No exportar el base64 pesado al excel
+        fileData: undefined
       }));
       if (!data.length) return Swal.fire('Aviso', 'No hay datos para exportar', 'info');
       const ws = XLSX.utils.json_to_sheet(data);
@@ -1948,7 +1997,7 @@
       const jsPDFClass = window.jspdf?.jsPDF || window.jsPDF;
       if (!jsPDFClass) return;
       const pdf = new jsPDFClass({ orientation: 'landscape' });
-      pdf.text(`Hoja de Entrega y Control - ${type.toUpperCase()} (Cloud)`, 14, 15);
+      pdf.text(`Hoja de Entrega y Control - ${type.toUpperCase()} (Cloud Realtime)`, 14, 15);
       
       const rows = (type === 'entrada' ? documentos : documentosSalida).map(d => [
         d.numeroControl || d.numeroOficio,
@@ -1977,15 +2026,14 @@
         head: [['Métrica', 'Total']],
         body: [
           ['Documentos de Entrada', documentos.length],
-          ['Documentos de Salida', documentosSalida.length],
-          ['Eventos Auditados', auditLog.length]
+          ['Documentos de Salida', documentosSalida.length]
         ]
       });
       pdf.save('Informe_Inteligencia_Cloud.pdf');
     }
 
     function exportBackup() {
-      const blob = new Blob([JSON.stringify({ documentos, documentosSalida, users, auditLog }, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify({ documentos, documentosSalida, users }, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = `Respaldo_Cloud_${Date.now()}.json`;
