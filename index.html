@@ -23,302 +23,65 @@
 
   <style>
     :root {
-      --primary-color: #0284c7;
-      --primary-dark: #0369a1;
-      --brand-color: #0c4a6e;
-      --font-main: 'Inter', sans-serif;
-      --secondary-color: #475569;
-      --accent-color: #7c3aed;
-      --success-color: #059669;
-      --warning-color: #d97706;
-      --danger-color: #dc2626;
-      --info-color: #2563eb;
-      --body-bg: #f1f5f9;
-      --card-bg: rgba(255, 255, 255, 0.98);
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --border-radius: 16px;
-      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --primary-color: #0284c7; --primary-dark: #0369a1; --brand-color: #0c4a6e;
+      --font-main: 'Inter', sans-serif; --secondary-color: #475569; --accent-color: #7c3aed;
+      --success-color: #059669; --warning-color: #d97706; --danger-color: #dc2626;
+      --info-color: #2563eb; --body-bg: #f1f5f9; --card-bg: rgba(255, 255, 255, 0.98);
+      --text-primary: #0f172a; --text-secondary: #475569; --border-radius: 16px;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05); --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
       --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
       --gradient-primary: linear-gradient(135deg, #0284c7 0%, #7c3aed 100%);
       --glass-border: rgba(0, 0, 0, 0.08);
     }
-
-    body {
-      font-family: var(--font-main);
-      background-color: var(--body-bg);
-      color: var(--text-primary);
-      line-height: 1.6;
-      font-size: 0.9rem;
-    }
-
-    .sidebar {
-      width: 82px;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-right: 1px solid var(--glass-border);
-      padding: 1.25rem 0.8rem;
-      display: flex;
-      flex-direction: column;
-      z-index: 1000;
-      overflow-y: auto;
-      overflow-x: hidden;
-      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
+    body { font-family: var(--font-main); background-color: var(--body-bg); color: var(--text-primary); line-height: 1.6; font-size: 0.9rem; }
+    .sidebar { width: 82px; height: 100vh; position: fixed; top: 0; left: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-right: 1px solid var(--glass-border); padding: 1.25rem 0.8rem; display: flex; flex-direction: column; z-index: 1000; overflow-y: auto; overflow-x: hidden; transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
     .sidebar:hover { width: 260px; }
-
-    .main-content {
-      flex: 1;
-      margin-left: 82px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .sidebar-brand {
-      display: flex;
-      align-items: center;
-      color: var(--brand-color);
-      font-weight: 700;
-      font-size: 1.05rem;
-      text-decoration: none;
-      margin-bottom: 2rem;
-      padding-left: 0.4rem;
-      white-space: nowrap;
-    }
-
-    .sidebar-brand i.main-icon {
-      font-size: 1.8rem;
-      color: var(--primary-color);
-      margin-right: 0.8rem;
-      width: 36px;
-      text-align: center;
-    }
-
-    .sidebar .nav-link {
-      display: flex;
-      align-items: center;
-      color: var(--text-secondary);
-      padding: 0.75rem 0.9rem;
-      border-radius: 12px;
-      margin-bottom: 0.4rem;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      font-weight: 500;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .sidebar .nav-link:hover, .sidebar .nav-link.active {
-      background-color: rgba(14, 165, 233, 0.12);
-      color: var(--primary-color);
-    }
-
+    .main-content { flex: 1; margin-left: 82px; min-height: 100vh; display: flex; flex-direction: column; transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+    .sidebar-brand { display: flex; align-items: center; color: var(--brand-color); font-weight: 700; font-size: 1.05rem; text-decoration: none; margin-bottom: 2rem; padding-left: 0.4rem; white-space: nowrap; }
+    .sidebar-brand i.main-icon { font-size: 1.8rem; color: var(--primary-color); margin-right: 0.8rem; width: 36px; text-align: center; }
+    .sidebar .nav-link { display: flex; align-items: center; color: var(--text-secondary); padding: 0.75rem 0.9rem; border-radius: 12px; margin-bottom: 0.4rem; transition: all 0.2s ease; text-decoration: none; font-weight: 500; white-space: nowrap; cursor: pointer; }
+    .sidebar .nav-link:hover, .sidebar .nav-link.active { background-color: rgba(14, 165, 233, 0.12); color: var(--primary-color); }
     .sidebar .nav-link span { opacity: 0; transition: opacity 0.25s ease; margin-left: 0.5rem; }
     .sidebar:hover .nav-link span { opacity: 1; }
     .sidebar .nav-link i { width: 24px; text-align: center; font-size: 1.15rem; }
     .sidebar .nav-link.text-danger { color: var(--danger-color); margin-top: auto; }
-
-    .app-header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: white;
-      padding: 1.25rem 0;
-      margin-bottom: 1.5rem;
-      border-radius: 0 0 20px 20px;
-      box-shadow: var(--shadow-md);
-    }
-
+    .app-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 1.25rem 0; margin-bottom: 1.5rem; border-radius: 0 0 20px 20px; box-shadow: var(--shadow-md); }
     .app-header h1 { font-weight: 700; font-size: 1.35rem; letter-spacing: -0.5px; margin:0;}
-
-    .card {
-      border-radius: var(--border-radius);
-      border: 1px solid var(--glass-border);
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 1.5rem;
-    }
-
-    .card-header {
-      background: transparent;
-      border-bottom: 1px solid var(--glass-border);
-      font-weight: 600;
-      color: var(--text-primary);
-      padding: 1rem 1.25rem;
-    }
-
+    .card { border-radius: var(--border-radius); border: 1px solid var(--glass-border); background: var(--card-bg); backdrop-filter: blur(20px); box-shadow: var(--shadow-sm); margin-bottom: 1.5rem; }
+    .card-header { background: transparent; border-bottom: 1px solid var(--glass-border); font-weight: 600; color: var(--text-primary); padding: 1rem 1.25rem; }
     .card-body { padding: 1.25rem; }
     .stat-number, .digital-clock { font-family: 'Inter', monospace; }
-
     .btn { border-radius: 10px; padding: 0.55rem 1.1rem; font-weight: 500; }
     .btn-primary { background: var(--gradient-primary); border: none; color: white; }
     .btn-primary:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35); }
-
-    .form-control, .form-select {
-      border-radius: 10px;
-      border: 1px solid var(--glass-border);
-      background-color: rgba(255, 255, 255, 0.9);
-      color: var(--text-primary);
-      padding: 0.65rem 0.9rem;
-      font-size: 0.9rem;
-    }
-
-    .form-control:focus, .form-select:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
-      outline: none;
-    }
-
-    .table-container {
-      border-radius: var(--border-radius);
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border);
-      overflow-x: auto;
-    }
-
-    .table thead th {
-      background-color: rgba(15, 23, 42, 0.04);
-      color: var(--text-secondary);
-      font-weight: 600;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.85rem;
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .table tbody td {
-      padding: 0.85rem;
-      vertical-align: middle;
-      border-bottom: 1px solid var(--glass-border);
-      color: var(--text-primary);
-    }
-
-    .dropzone {
-      border: 2px dashed var(--primary-color);
-      border-radius: 14px;
-      padding: 2.2rem 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      background-color: rgba(14, 165, 233, 0.03);
-      transition: all 0.25s ease;
-    }
-
-    .dropzone:hover, .dropzone.dragover {
-      border-color: var(--accent-color);
-      background-color: rgba(14, 165, 233, 0.08);
-      transform: scale(1.005);
-    }
-
+    .form-control, .form-select { border-radius: 10px; border: 1px solid var(--glass-border); background-color: rgba(255, 255, 255, 0.9); color: var(--text-primary); padding: 0.65rem 0.9rem; font-size: 0.9rem; }
+    .form-control:focus, .form-select:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); outline: none; }
+    .table-container { border-radius: var(--border-radius); background: var(--card-bg); border: 1px solid var(--glass-border); overflow-x: auto; }
+    .table thead th { background-color: rgba(15, 23, 42, 0.04); color: var(--text-secondary); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.85rem; border-bottom: 1px solid var(--glass-border); }
+    .table tbody td { padding: 0.85rem; vertical-align: middle; border-bottom: 1px solid var(--glass-border); color: var(--text-primary); }
+    .dropzone { border: 2px dashed var(--primary-color); border-radius: 14px; padding: 2.2rem 1.5rem; text-align: center; cursor: pointer; background-color: rgba(14, 165, 233, 0.03); transition: all 0.25s ease; }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--accent-color); background-color: rgba(14, 165, 233, 0.08); transform: scale(1.005); }
     .dropzone i { font-size: 40px; color: var(--primary-color); margin-bottom: 0.5rem; }
-
-    .attached-file-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(14, 165, 233, 0.1);
-      border: 1px solid rgba(14, 165, 233, 0.3);
-      color: var(--primary-color);
-      padding: 6px 12px;
-      border-radius: 8px;
-      margin: 4px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
+    .attached-file-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(14, 165, 233, 0.1); border: 1px solid rgba(14, 165, 233, 0.3); color: var(--primary-color); padding: 6px 12px; border-radius: 8px; margin: 4px; font-size: 0.85rem; font-weight: 500; }
     .attached-file-badge .btn-remove { color: var(--danger-color); cursor: pointer; font-size: 0.95rem; transition: transform 0.2s; }
     .attached-file-badge .btn-remove:hover { transform: scale(1.2); }
-
-    .welcome-hero-premium {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      border-radius: 20px;
-      padding: 1.75rem 2rem;
-      border: 1px solid var(--glass-border);
-      margin-bottom: 1.5rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .stat-glass-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 1.2rem;
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-      transition: transform 0.2s ease;
-    }
-
+    .welcome-hero-premium { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); border-radius: 20px; padding: 1.75rem 2rem; border: 1px solid var(--glass-border); margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
+    .stat-glass-card { background: var(--card-bg); border-radius: 16px; padding: 1.2rem; border: 1px solid var(--glass-border); box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 1.1rem; transition: transform 0.2s ease; }
     .stat-glass-card:hover { transform: translateY(-2px); }
-
-    .stat-icon-wrapper {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-    }
-
+    .stat-icon-wrapper { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; }
     .stat-number { font-size: 1.75rem; font-weight: 800; line-height: 1.1; color: var(--text-primary); }
     .stat-label { font-size: 0.76rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
-
-    .chart-card-modern {
-      background: var(--card-bg);
-      border-radius: 18px;
-      border: 1px solid var(--glass-border);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-sm);
-      height: 100%;
-    }
-
+    .chart-card-modern { background: var(--card-bg); border-radius: 18px; border: 1px solid var(--glass-border); padding: 1.25rem; box-shadow: var(--shadow-sm); height: 100%; }
     .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
     .chart-header h6 { margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--text-primary); }
     .chart-box { position: relative; width: 100%; height: 270px; }
-
     .badge-status { padding: 0.4em 0.75em; border-radius: 50rem; font-weight: 600; font-size: 0.75rem; }
     .bg-proceso { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
     .bg-archivado { background-color: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
-
-    .digital-clock {
-      font-weight: 600; font-size: 0.95rem; color: var(--primary-color);
-      background: rgba(14, 165, 233, 0.1); padding: 0.35rem 0.85rem; border-radius: 50px;
-    }
-
+    .digital-clock { font-weight: 600; font-size: 0.95rem; color: var(--primary-color); background: rgba(14, 165, 233, 0.1); padding: 0.35rem 0.85rem; border-radius: 50px; }
     .system-status-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; margin-right: 6px; }
-
-    .storage-info { padding: 0 0.5rem 0.75rem; font-size: 0.75rem; color: var(--text-secondary); }
-    .progress-storage { height: 6px; background-color: #e2e8f0; border-radius: 10px; margin-top: 4px; overflow: hidden; }
-    .progress-bar-storage { height: 100%; background: var(--gradient-primary); transition: width 0.4s; }
-
-    .login-screen {
-      min-height: 100vh;
-      display: flex;
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
-    }
-
-    .login-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 3rem 2.5rem;
-      width: 100%;
-      max-width: 440px;
-      margin: auto;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--glass-border);
-    }
-
+    .login-screen { min-height: 100vh; display: flex; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; }
+    .login-card { background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 3rem 2.5rem; width: 100%; max-width: 440px; margin: auto; box-shadow: var(--shadow-lg); border: 1px solid var(--glass-border); }
     .app-content { display: none; }
     .app-content.show { display: block; }
     .pointer-cursor { cursor: pointer; }
@@ -326,7 +89,7 @@
 </head>
 <body>
 
-  <!-- PANTALLA DE LOGIN (Siempre visible al abrir) -->
+  <!-- PANTALLA DE LOGIN -->
   <div id="loginScreen" class="login-screen">
     <div class="login-card text-center">
       <div class="mb-4">
@@ -365,9 +128,6 @@
 
   <!-- APLICACIÓN PRINCIPAL -->
   <div id="appContent" class="app-content">
-    <div id="sidebarOverlay" class="sidebar-overlay"></div>
-
-    <!-- Menú Lateral (Sidebar) -->
     <div class="sidebar">
       <a class="sidebar-brand" href="javascript:void(0)">
         <i class="fas fa-building main-icon"></i>
@@ -375,54 +135,16 @@
       </a>
 
       <ul class="nav flex-column mb-auto mt-2">
-        <li class="nav-item">
-          <a id="navInicio" class="nav-link active" onclick="window.showSection('homeSection')">
-            <i class="fas fa-chart-pie"></i> <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navNuevoDocumento" class="nav-link" onclick="window.showSection('registerSection')">
-            <i class="fas fa-file-import"></i> <span>Doc. Entrada</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navDocumentoSalida" class="nav-link" onclick="window.showSection('salidaSection')">
-            <i class="fas fa-file-export"></i> <span>Doc. Salida</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navDocumentos" class="nav-link" onclick="window.showSection('documentsSection')">
-            <i class="fas fa-folder-open"></i> <span>Reg. Entrada</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navDocumentosSalida" class="nav-link" onclick="window.showSection('salidaDocumentsSection')">
-            <i class="fas fa-paper-plane"></i> <span>Reg. Salida</span>
-          </a>
-        </li>
+        <li class="nav-item"><a id="navInicio" class="nav-link active" onclick="window.showSection('homeSection')"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a></li>
+        <li class="nav-item"><a id="navNuevoDocumento" class="nav-link" onclick="window.showSection('registerSection')"><i class="fas fa-file-import"></i> <span>Doc. Entrada</span></a></li>
+        <li class="nav-item"><a id="navDocumentoSalida" class="nav-link" onclick="window.showSection('salidaSection')"><i class="fas fa-file-export"></i> <span>Doc. Salida</span></a></li>
+        <li class="nav-item"><a id="navDocumentos" class="nav-link" onclick="window.showSection('documentsSection')"><i class="fas fa-folder-open"></i> <span>Reg. Entrada</span></a></li>
+        <li class="nav-item"><a id="navDocumentosSalida" class="nav-link" onclick="window.showSection('salidaDocumentsSection')"><i class="fas fa-paper-plane"></i> <span>Reg. Salida</span></a></li>
         <hr class="text-muted opacity-25 mx-2 my-3">
-        <li class="nav-item">
-          <a id="navConfiguracion" class="nav-link" onclick="window.openConfigModal()">
-            <i class="fas fa-cog"></i> <span>Configuración</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a id="navUsuarios" class="nav-link" onclick="window.openUsuariosModal()">
-            <i class="fas fa-users-cog"></i> <span>Usuarios</span>
-          </a>
-        </li>
+        <li class="nav-item"><a id="navUsuarios" class="nav-link" onclick="window.openUsuariosModal()"><i class="fas fa-users-cog"></i> <span>Usuarios</span></a></li>
       </ul>
 
       <div class="mt-auto">
-        <div class="storage-info">
-          <div class="d-flex justify-content-between">
-            <span>Almacenamiento</span>
-            <span id="storagePercent">0%</span>
-          </div>
-          <div class="progress-storage">
-            <div class="progress-bar-storage" id="storageBar"></div>
-          </div>
-        </div>
         <a class="nav-link text-danger fw-bold" onclick="window.logout()">
           <i class="fas fa-power-off"></i> <span>Cerrar Sesión</span>
         </a>
@@ -434,7 +156,6 @@
       <header class="app-header">
         <div class="container-fluid px-4 d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center gap-3">
-            <i class="fas fa-bars mobile-toggle d-lg-none pointer-cursor fs-5 text-white" id="sidebarToggle"></i>
             <h1 class="mb-0 text-white">Sistema de Correspondencia Oficial</h1>
           </div>
           <div class="d-flex align-items-center gap-3">
@@ -445,14 +166,14 @@
 
       <main class="container-fluid px-4 mb-5">
         
-        <!-- SECCIÓN: DASHBOARD ANALÍTICO PROFESIONAL -->
+        <!-- DASHBOARD -->
         <div id="homeSection">
           <div class="welcome-hero-premium mb-4">
             <div class="row align-items-center">
               <div class="col-12">
                 <div class="d-flex align-items-center gap-2 mb-3">
                   <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-bold border border-success border-opacity-25">
-                    <span class="system-status-dot"></span>Sistema Operativo En Línea
+                    <span class="system-status-dot"></span>Conectado a Servidor Central (MySQL)
                   </span>
                 </div>
                 <h2 class="fw-bold mb-1 text-dark" style="font-weight: 900;">Panel Analítico de Control</h2>
@@ -461,86 +182,23 @@
             </div>
           </div>
 
-          <!-- Tarjetas KPI -->
           <div class="row g-4 mb-4">
-            <div class="col-6 col-md-4 col-xl-2">
-              <div class="stat-glass-card" style="border-left: 4px solid #0284c7;">
-                <div class="stat-icon-wrapper bg-primary bg-opacity-10 text-primary"><i class="fas fa-file-import"></i></div>
-                <div class="stat-info"><div class="stat-number" id="homeEntradaDocs">0</div><div class="stat-label">Entradas</div></div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-              <div class="stat-glass-card" style="border-left: 4px solid #7c3aed;">
-                <div class="stat-icon-wrapper bg-info bg-opacity-10 text-info"><i class="fas fa-file-export"></i></div>
-                <div class="stat-info"><div class="stat-number" id="homeSalidaDocs">0</div><div class="stat-label">Salidas</div></div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-              <div class="stat-glass-card" style="border-left: 4px solid #f59e0b;">
-                <div class="stat-icon-wrapper bg-warning bg-opacity-10 text-warning"><i class="fas fa-spinner"></i></div>
-                <div class="stat-info"><div class="stat-number" id="homePendingDocs">0</div><div class="stat-label">En Proceso</div></div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-              <div class="stat-glass-card" style="border-left: 4px solid #10b981;">
-                <div class="stat-icon-wrapper bg-success bg-opacity-10 text-success"><i class="fas fa-check-double"></i></div>
-                <div class="stat-info"><div class="stat-number" id="homeArchivedDocs">0</div><div class="stat-label">Finalizados</div></div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-              <div class="stat-glass-card" style="border-left: 4px solid #0f172a;">
-                <div class="stat-icon-wrapper bg-dark bg-opacity-10 text-dark"><i class="fas fa-folder-tree"></i></div>
-                <div class="stat-info"><div class="stat-number" id="homeTotalDocs">0</div><div class="stat-label">Volumen Total</div></div>
-              </div>
-            </div>
-            <div class="col-6 col-md-4 col-xl-2">
-              <div class="stat-glass-card" style="border-left: 4px solid #475569;">
-                <div class="stat-icon-wrapper bg-secondary bg-opacity-10 text-secondary"><i class="fas fa-paperclip"></i></div>
-                <div class="stat-info"><div class="stat-number" id="homeWithAttachments">0</div><div class="stat-label">Con Adjuntos</div></div>
-              </div>
-            </div>
+            <div class="col-6 col-md-4 col-xl-2"><div class="stat-glass-card" style="border-left: 4px solid #0284c7;"><div class="stat-icon-wrapper bg-primary bg-opacity-10 text-primary"><i class="fas fa-file-import"></i></div><div class="stat-info"><div class="stat-number" id="homeEntradaDocs">0</div><div class="stat-label">Entradas</div></div></div></div>
+            <div class="col-6 col-md-4 col-xl-2"><div class="stat-glass-card" style="border-left: 4px solid #7c3aed;"><div class="stat-icon-wrapper bg-info bg-opacity-10 text-info"><i class="fas fa-file-export"></i></div><div class="stat-info"><div class="stat-number" id="homeSalidaDocs">0</div><div class="stat-label">Salidas</div></div></div></div>
+            <div class="col-6 col-md-4 col-xl-2"><div class="stat-glass-card" style="border-left: 4px solid #f59e0b;"><div class="stat-icon-wrapper bg-warning bg-opacity-10 text-warning"><i class="fas fa-spinner"></i></div><div class="stat-info"><div class="stat-number" id="homePendingDocs">0</div><div class="stat-label">En Proceso</div></div></div></div>
+            <div class="col-6 col-md-4 col-xl-2"><div class="stat-glass-card" style="border-left: 4px solid #10b981;"><div class="stat-icon-wrapper bg-success bg-opacity-10 text-success"><i class="fas fa-check-double"></i></div><div class="stat-info"><div class="stat-number" id="homeArchivedDocs">0</div><div class="stat-label">Finalizados</div></div></div></div>
+            <div class="col-6 col-md-4 col-xl-2"><div class="stat-glass-card" style="border-left: 4px solid #0f172a;"><div class="stat-icon-wrapper bg-dark bg-opacity-10 text-dark"><i class="fas fa-folder-tree"></i></div><div class="stat-info"><div class="stat-number" id="homeTotalDocs">0</div><div class="stat-label">Volumen Total</div></div></div></div>
+            <div class="col-6 col-md-4 col-xl-2"><div class="stat-glass-card" style="border-left: 4px solid #475569;"><div class="stat-icon-wrapper bg-secondary bg-opacity-10 text-secondary"><i class="fas fa-paperclip"></i></div><div class="stat-info"><div class="stat-number" id="homeWithAttachments">0</div><div class="stat-label">Con Adjuntos</div></div></div></div>
           </div>
 
-          <!-- Charts -->
           <div class="row g-4 mb-4">
-            <div class="col-12 col-xl-8">
-              <div class="chart-card-modern">
-                <div class="chart-header">
-                  <h6><i class="fas fa-chart-line text-primary me-2"></i>Flujo Mensual: Entradas vs. Salidas</h6>
-                  <span class="badge bg-light text-secondary border">General</span>
-                </div>
-                <div class="chart-box"><canvas id="chartFlujoMensual"></canvas></div>
-              </div>
-            </div>
-            <div class="col-12 col-xl-4">
-              <div class="chart-card-modern">
-                <div class="chart-header">
-                  <h6><i class="fas fa-chart-pie text-warning me-2"></i>Estatus Operativo</h6>
-                </div>
-                <div class="chart-box"><canvas id="chartCondicion"></canvas></div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="chart-card-modern">
-                <div class="chart-header"><h6><i class="fas fa-file-alt text-success me-2"></i>Por Tipo de Doc</h6></div>
-                <div class="chart-box"><canvas id="chartTipo"></canvas></div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="chart-card-modern">
-                <div class="chart-header"><h6><i class="fas fa-building text-info me-2"></i>Carga por División</h6></div>
-                <div class="chart-box"><canvas id="chartDivision"></canvas></div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="chart-card-modern">
-                <div class="chart-header"><h6><i class="fas fa-tags text-danger me-2"></i>Por Asunto</h6></div>
-                <div class="chart-box"><canvas id="chartAsunto"></canvas></div>
-              </div>
-            </div>
+            <div class="col-12 col-xl-8"><div class="chart-card-modern"><div class="chart-header"><h6><i class="fas fa-chart-line text-primary me-2"></i>Flujo Mensual: Entradas vs. Salidas</h6></div><div class="chart-box"><canvas id="chartFlujoMensual"></canvas></div></div></div>
+            <div class="col-12 col-xl-4"><div class="chart-card-modern"><div class="chart-header"><h6><i class="fas fa-chart-pie text-warning me-2"></i>Estatus Operativo</h6></div><div class="chart-box"><canvas id="chartCondicion"></canvas></div></div></div>
+            <div class="col-12 col-lg-4"><div class="chart-card-modern"><div class="chart-header"><h6><i class="fas fa-file-alt text-success me-2"></i>Por Tipo de Doc</h6></div><div class="chart-box"><canvas id="chartTipo"></canvas></div></div></div>
+            <div class="col-12 col-lg-4"><div class="chart-card-modern"><div class="chart-header"><h6><i class="fas fa-building text-info me-2"></i>Carga por División</h6></div><div class="chart-box"><canvas id="chartDivision"></canvas></div></div></div>
+            <div class="col-12 col-lg-4"><div class="chart-card-modern"><div class="chart-header"><h6><i class="fas fa-tags text-danger me-2"></i>Por Asunto</h6></div><div class="chart-box"><canvas id="chartAsunto"></canvas></div></div></div>
           </div>
 
-          <!-- Tabla Recientes -->
           <div class="card border-0 shadow-sm">
             <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-3">
               <span class="fw-bold text-dark"><i class="fas fa-history me-2 text-primary"></i>Actividad Reciente (Últimos 5 registros)</span>
@@ -549,17 +207,10 @@
               <div class="table-responsive">
                 <table class="table table-hover mb-0 align-middle">
                   <thead class="bg-light">
-                    <tr>
-                      <th class="ps-4 border-bottom-0">N° Oficio / Control</th>
-                      <th class="border-bottom-0">Flujo</th>
-                      <th class="border-bottom-0">Asunto</th>
-                      <th class="border-bottom-0">Tipo</th>
-                      <th class="border-bottom-0">Fecha</th>
-                      <th class="border-bottom-0 text-end pe-4">Estado</th>
-                    </tr>
+                    <tr><th class="ps-4">N° Oficio/Control</th><th>Flujo</th><th>Asunto</th><th>Tipo</th><th>Fecha</th><th class="text-end pe-4">Estado</th></tr>
                   </thead>
                   <tbody id="recentActivityTable">
-                    <tr><td colspan="6" class="text-center py-4 text-muted">No hay actividad reciente</td></tr>
+                    <tr><td colspan="6" class="text-center py-4 text-muted">Cargando...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -576,91 +227,32 @@
             <div class="card-body p-4">
               <form id="documentForm" onsubmit="event.preventDefault(); window.guardarDocumentoEntrada();">
                 <div class="row mb-4">
-                  <div class="col-md-8">
-                    <label class="form-label fw-bold text-secondary">Unidad de Procedencia *</label>
-                    <input type="text" class="form-control" id="destinatario" required placeholder="Ej. Comando General">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label fw-bold text-secondary">Fecha de Recepción *</label>
-                    <input type="text" class="form-control bg-white" id="fecha" required>
-                  </div>
+                  <div class="col-md-8"><label class="form-label fw-bold text-secondary">Unidad de Procedencia *</label><input type="text" class="form-control" id="destinatario" required></div>
+                  <div class="col-md-4"><label class="form-label fw-bold text-secondary">Fecha de Recepción *</label><input type="text" class="form-control bg-white" id="fecha" required></div>
                 </div>
-
                 <div class="row mb-4">
-                  <div class="col-md-3">
-                    <label class="form-label fw-bold text-secondary">N° de Control</label>
-                    <input type="text" class="form-control bg-light" id="numeroControl" readonly>
-                  </div>
-                  <div class="col-md-3">
-                    <label class="form-label fw-bold text-secondary">N° de Oficio</label>
-                    <input type="text" class="form-control" id="numeroOficio" placeholder="Ej. OFI-102-2026">
-                  </div>
-                  <div class="col-md-3">
-                    <label class="form-label fw-bold text-secondary">Tipo de Documento *</label>
+                  <div class="col-md-3"><label class="form-label fw-bold text-secondary">N° de Control</label><input type="text" class="form-control bg-light" id="numeroControl" readonly></div>
+                  <div class="col-md-3"><label class="form-label fw-bold text-secondary">N° de Oficio</label><input type="text" class="form-control" id="numeroOficio"></div>
+                  <div class="col-md-3"><label class="form-label fw-bold text-secondary">Tipo de Documento *</label>
                     <select class="form-select" id="tipoDocumento" required>
-                      <option value="">Seleccione</option>
-                      <option value="oficio">Oficio</option>
-                      <option value="memorandum">Memorándum</option>
-                      <option value="circular">Circular</option>
-                      <option value="informe">Informe</option>
-                      <option value="agenda">Agenda</option>
-                      <option value="radiograma">Radiograma</option>
-                      <option value="punto_cuenta">Punto de Cuenta</option>
-                      <option value="acta">Acta</option>
-                      <option value="otro">Otro</option>
+                      <option value="">Seleccione</option><option value="oficio">Oficio</option><option value="memorandum">Memorándum</option><option value="circular">Circular</option><option value="informe">Informe</option><option value="agenda">Agenda</option><option value="radiograma">Radiograma</option><option value="punto_cuenta">Punto de Cuenta</option><option value="acta">Acta</option><option value="otro">Otro</option>
                     </select>
                   </div>
-                  <div class="col-md-3">
-                    <label class="form-label fw-bold text-secondary">Asunto *</label>
+                  <div class="col-md-3"><label class="form-label fw-bold text-secondary">Asunto *</label>
                     <select class="form-select" id="asunto" required>
-                      <option value="">Seleccione</option>
-                      <option value="presentacion">Presentación</option>
-                      <option value="informacion">Información</option>
-                      <option value="remision">Remisión</option>
-                      <option value="acuse">Acuse de Recibo</option>
-                      <option value="solicitud">Solicitud</option>
+                      <option value="">Seleccione</option><option value="presentacion">Presentación</option><option value="informacion">Información</option><option value="remision">Remisión</option><option value="acuse">Acuse de Recibo</option><option value="solicitud">Solicitud</option>
                     </select>
                   </div>
                 </div>
-
                 <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label class="form-label fw-bold text-secondary">División Asignada (Selección)</label>
-                    <div id="asignacionUsuarios" class="border rounded-3 p-3 bg-light" style="max-height: 180px; overflow-y: auto;"></div>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label fw-bold text-secondary">Acción Requerida</label>
-                    <div class="border rounded-3 p-3 bg-light" id="accion" style="max-height: 180px; overflow-y: auto;"></div>
-                  </div>
-                  <div class="col-md-12 mt-4">
-                    <label class="form-label fw-bold text-secondary">Profesional que Registró</label>
-                    <input type="text" class="form-control" id="profesionalRegistro" placeholder="Nombre completo del operador">
-                  </div>
+                  <div class="col-md-6"><label class="form-label fw-bold text-secondary">División Asignada (Selección)</label><div id="asignacionUsuarios" class="border rounded-3 p-3 bg-light" style="max-height: 180px; overflow-y: auto;"></div></div>
+                  <div class="col-md-6"><label class="form-label fw-bold text-secondary">Acción Requerida</label><div class="border rounded-3 p-3 bg-light" id="accion" style="max-height: 180px; overflow-y: auto;"></div></div>
+                  <div class="col-md-12 mt-4"><label class="form-label fw-bold text-secondary">Profesional que Registró</label><input type="text" class="form-control" id="profesionalRegistro"></div>
                 </div>
-
-                <div class="mb-4">
-                  <label class="form-label fw-bold text-secondary">Resumen / Descripción *</label>
-                  <textarea class="form-control" id="descripcion" rows="3" required placeholder="Ingrese los detalles principales del documento..."></textarea>
-                </div>
-
-                <div class="card mb-4 border-0 bg-light">
-                  <div class="card-body p-4">
-                    <label class="form-label fw-bold text-secondary"><i class="fas fa-paperclip me-2 text-primary"></i>Archivos Adjuntos</label>
-                    <div class="dropzone bg-white mt-2" id="dropzoneEntrada">
-                      <input type="file" id="fileInputEntrada" class="d-none" accept=".pdf,.jpg,.jpeg,.png" multiple>
-                      <i class="fas fa-cloud-upload-alt text-muted opacity-50"></i>
-                      <p class="mb-0 fw-semibold mt-2">Haga clic o arrastre sus archivos aquí</p>
-                      <small class="text-muted">PDF, JPG, PNG</small>
-                    </div>
-                    <div class="mt-3 d-none" id="previewContainerEntrada">
-                      <div class="fw-bold small mb-2 text-primary">Archivos listos para guardar:</div>
-                      <div id="previewListEntrada" class="d-flex flex-wrap gap-2"></div>
-                    </div>
-                  </div>
-                </div>
-
+                <div class="mb-4"><label class="form-label fw-bold text-secondary">Resumen / Descripción *</label><textarea class="form-control" id="descripcion" rows="3" required></textarea></div>
+                <div class="card mb-4 border-0 bg-light"><div class="card-body p-4"><label class="form-label fw-bold text-secondary"><i class="fas fa-paperclip me-2 text-primary"></i>Archivos Adjuntos</label><div class="dropzone bg-white mt-2" id="dropzoneEntrada"><input type="file" id="fileInputEntrada" class="d-none" accept=".pdf,.jpg,.jpeg,.png" multiple><i class="fas fa-cloud-upload-alt text-muted opacity-50"></i><p class="mb-0 fw-semibold mt-2">Haga clic o arrastre sus archivos aquí</p></div><div class="mt-3 d-none" id="previewContainerEntrada"><div id="previewListEntrada" class="d-flex flex-wrap gap-2"></div></div></div></div>
                 <div class="d-flex justify-content-end gap-3 mt-4 border-top pt-4">
-                  <button type="reset" class="btn btn-light border fw-bold text-secondary px-4" onclick="window.resetAttachedFiles('entrada')">Limpiar Formulario</button>
+                  <button type="reset" class="btn btn-light border fw-bold px-4" onclick="window.resetAttachedFiles('entrada')">Limpiar Formulario</button>
                   <button type="submit" class="btn btn-primary fw-bold px-4 shadow-sm"><i class="fas fa-save me-2"></i>Registrar Documento</button>
                 </div>
               </form>
@@ -677,91 +269,32 @@
             <div class="card-body p-4">
               <form id="salidaForm" onsubmit="event.preventDefault(); window.guardarDocumentoSalida();">
                 <div class="row mb-4">
-                  <div class="col-md-8">
-                    <label class="form-label fw-bold text-secondary">Unidad de Destino *</label>
-                    <input type="text" class="form-control" id="salidaDestinatario" required placeholder="Ej. Segundo Comando">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label fw-bold text-secondary">Fecha de Emisión *</label>
-                    <input type="text" class="form-control bg-white" id="salidaFecha" required>
-                  </div>
+                  <div class="col-md-8"><label class="form-label fw-bold text-secondary">Unidad de Destino *</label><input type="text" class="form-control" id="salidaDestinatario" required></div>
+                  <div class="col-md-4"><label class="form-label fw-bold text-secondary">Fecha de Emisión *</label><input type="text" class="form-control bg-white" id="salidaFecha" required></div>
                 </div>
-
                 <div class="row mb-4">
-                  <div class="col-md-4">
-                    <label class="form-label fw-bold text-secondary">N° de Oficio</label>
-                    <input type="text" class="form-control" id="salidaNumeroOficio" placeholder="Auto-generado">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label fw-bold text-secondary">Tipo de Documento *</label>
+                  <div class="col-md-4"><label class="form-label fw-bold text-secondary">N° de Oficio</label><input type="text" class="form-control" id="salidaNumeroOficio"></div>
+                  <div class="col-md-4"><label class="form-label fw-bold text-secondary">Tipo de Documento *</label>
                     <select class="form-select" id="salidaTipoDocumento" required>
-                      <option value="">Seleccione</option>
-                      <option value="oficio">Oficio</option>
-                      <option value="memorandum">Memorándum</option>
-                      <option value="circular">Circular</option>
-                      <option value="informe">Informe</option>
-                      <option value="agenda">Agenda</option>
-                      <option value="radiograma">Radiograma</option>
-                      <option value="punto_cuenta">Punto de Cuenta</option>
-                      <option value="acta">Acta</option>
-                      <option value="otro">Otro</option>
+                      <option value="">Seleccione</option><option value="oficio">Oficio</option><option value="memorandum">Memorándum</option><option value="circular">Circular</option><option value="informe">Informe</option><option value="agenda">Agenda</option><option value="radiograma">Radiograma</option><option value="punto_cuenta">Punto de Cuenta</option><option value="acta">Acta</option><option value="otro">Otro</option>
                     </select>
                   </div>
-                  <div class="col-md-4">
-                    <label class="form-label fw-bold text-secondary">Asunto *</label>
+                  <div class="col-md-4"><label class="form-label fw-bold text-secondary">Asunto *</label>
                     <select class="form-select" id="salidaAsunto" required>
-                      <option value="">Seleccione</option>
-                      <option value="presentacion">Presentación</option>
-                      <option value="informacion">Información</option>
-                      <option value="remision">Remisión</option>
-                      <option value="acuse">Acuse de Recibo</option>
-                      <option value="solicitud">Solicitud</option>
+                      <option value="">Seleccione</option><option value="presentacion">Presentación</option><option value="informacion">Información</option><option value="remision">Remisión</option><option value="acuse">Acuse de Recibo</option><option value="solicitud">Solicitud</option>
                     </select>
                   </div>
                 </div>
-
-                <div class="mb-4">
-                  <label class="form-label fw-bold text-secondary">Resumen / Descripción *</label>
-                  <textarea class="form-control" id="salidaDescripcion" rows="3" required placeholder="Detalles del documento emitido..."></textarea>
-                </div>
-
+                <div class="mb-4"><label class="form-label fw-bold text-secondary">Resumen / Descripción *</label><textarea class="form-control" id="salidaDescripcion" rows="3" required></textarea></div>
                 <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label class="form-label fw-bold text-secondary">División Asignada</label>
-                    <div id="salidaAsignacionUsuarios" class="border rounded-3 p-3 bg-light" style="max-height: 180px; overflow-y: auto;"></div>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label fw-bold text-secondary">Acción Requerida</label>
-                    <div class="border rounded-3 p-3 bg-light" id="salidaAccion" style="max-height: 180px; overflow-y: auto;"></div>
-                  </div>
-                  <div class="col-md-6 mt-4">
-                    <label class="form-label fw-bold text-secondary">Profesional que lo elaboró</label>
-                    <input type="text" class="form-control" id="salidaProfesional" placeholder="Nombre completo">
-                  </div>
-                  <div class="col-md-6 mt-4">
-                    <label class="form-label fw-bold text-secondary">Fecha de Entrega Física</label>
-                    <input type="text" class="form-control bg-white" id="salidaFechaEntrega">
-                  </div>
+                  <div class="col-md-6"><label class="form-label fw-bold text-secondary">División Asignada</label><div id="salidaAsignacionUsuarios" class="border rounded-3 p-3 bg-light" style="max-height: 180px; overflow-y: auto;"></div></div>
+                  <div class="col-md-6"><label class="form-label fw-bold text-secondary">Acción Requerida</label><div class="border rounded-3 p-3 bg-light" id="salidaAccion" style="max-height: 180px; overflow-y: auto;"></div></div>
+                  <div class="col-md-6 mt-4"><label class="form-label fw-bold text-secondary">Profesional que lo elaboró</label><input type="text" class="form-control" id="salidaProfesional"></div>
+                  <div class="col-md-6 mt-4"><label class="form-label fw-bold text-secondary">Fecha de Entrega Física</label><input type="text" class="form-control bg-white" id="salidaFechaEntrega"></div>
                 </div>
-
-                <div class="card mb-4 border-0 bg-light">
-                  <div class="card-body p-4">
-                    <label class="form-label fw-bold text-secondary"><i class="fas fa-paperclip me-2 text-info"></i>Archivos Adjuntos</label>
-                    <div class="dropzone bg-white mt-2" id="dropzoneSalida">
-                      <input type="file" id="fileInputSalida" class="d-none" accept=".pdf,.jpg,.jpeg,.png" multiple>
-                      <i class="fas fa-cloud-upload-alt text-muted opacity-50"></i>
-                      <p class="mb-0 fw-semibold mt-2">Haga clic o arrastre sus archivos aquí</p>
-                      <small class="text-muted">PDF, JPG, PNG</small>
-                    </div>
-                    <div class="mt-3 d-none" id="previewContainerSalida">
-                      <div class="fw-bold small mb-2 text-info">Archivos listos para guardar:</div>
-                      <div id="previewListSalida" class="d-flex flex-wrap gap-2"></div>
-                    </div>
-                  </div>
-                </div>
-
+                <div class="card mb-4 border-0 bg-light"><div class="card-body p-4"><label class="form-label fw-bold text-secondary"><i class="fas fa-paperclip me-2 text-info"></i>Archivos Adjuntos</label><div class="dropzone bg-white mt-2" id="dropzoneSalida"><input type="file" id="fileInputSalida" class="d-none" accept=".pdf,.jpg,.jpeg,.png" multiple><i class="fas fa-cloud-upload-alt text-muted opacity-50"></i><p class="mb-0 fw-semibold mt-2">Haga clic o arrastre sus archivos aquí</p></div><div class="mt-3 d-none" id="previewContainerSalida"><div id="previewListSalida" class="d-flex flex-wrap gap-2"></div></div></div></div>
                 <div class="d-flex justify-content-end gap-3 mt-4 border-top pt-4">
-                  <button type="reset" class="btn btn-light border fw-bold text-secondary px-4" onclick="window.resetAttachedFiles('salida')">Limpiar Formulario</button>
+                  <button type="reset" class="btn btn-light border fw-bold px-4" onclick="window.resetAttachedFiles('salida')">Limpiar Formulario</button>
                   <button type="submit" class="btn btn-primary fw-bold px-4 shadow-sm"><i class="fas fa-paper-plane me-2"></i>Registrar Salida</button>
                 </div>
               </form>
@@ -775,52 +308,19 @@
             <div class="card-header bg-white border-bottom py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
               <h5 class="mb-0 fw-bold"><i class="fas fa-inbox text-primary me-2"></i>Registros de Entrada</h5>
               <div class="d-flex gap-2">
-                <button type="button" class="btn btn-outline-danger fw-bold" onclick="window.exportPdfHojaEntrega('entrada')">
-                  <i class="fas fa-file-pdf me-2"></i>Hoja PDF
-                </button>
-                <button type="button" class="btn btn-success fw-bold text-white shadow-sm" onclick="window.exportarExcelEntrada()">
-                  <i class="fas fa-file-excel me-2"></i>Exportar Excel
-                </button>
+                <button type="button" class="btn btn-outline-danger fw-bold" onclick="window.exportPdfHojaEntrega('entrada')"><i class="fas fa-file-pdf me-2"></i>Hoja PDF</button>
+                <button type="button" class="btn btn-success fw-bold text-white shadow-sm" onclick="window.exportarExcelEntrada()"><i class="fas fa-file-excel me-2"></i>Exportar Excel</button>
               </div>
             </div>
             <div class="card-body p-4">
               <div class="row mb-4">
-                <div class="col-md-8">
-                  <div class="input-group input-group-lg shadow-sm">
-                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
-                    <input type="text" class="form-control border-start-0 ps-0" placeholder="Buscar por procedencia, oficio, control..." id="searchInput" oninput="window.renderDocumentosTable()">
-                  </div>
-                </div>
-                <div class="col-md-4 mt-3 mt-md-0">
-                  <select class="form-select form-select-lg shadow-sm" id="filterDate" onchange="window.renderDocumentosTable()">
-                    <option value="all">Filtro: Todas las fechas</option>
-                    <option value="today">Filtro: Hoy</option>
-                    <option value="week">Filtro: Esta semana</option>
-                    <option value="month">Filtro: Este mes</option>
-                  </select>
-                </div>
+                <div class="col-md-8"><div class="input-group input-group-lg shadow-sm"><span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span><input type="text" class="form-control border-start-0 ps-0" placeholder="Buscar por procedencia, oficio, control..." id="searchInput" oninput="window.renderDocumentosTable()"></div></div>
+                <div class="col-md-4 mt-3 mt-md-0"><select class="form-select form-select-lg shadow-sm" id="filterDate" onchange="window.renderDocumentosTable()"><option value="all">Todas las fechas</option><option value="today">Hoy</option><option value="week">Esta semana</option><option value="month">Este mes</option></select></div>
               </div>
-
               <div class="table-container border rounded-3">
                 <table class="table table-hover align-middle mb-0">
-                  <thead class="bg-light">
-                    <tr>
-                      <th class="border-bottom-0">N°</th>
-                      <th class="border-bottom-0">N° Control</th>
-                      <th class="border-bottom-0">N° Oficio</th>
-                      <th class="border-bottom-0">Asunto</th>
-                      <th class="border-bottom-0">Tipo</th>
-                      <th class="border-bottom-0">Fecha</th>
-                      <th class="border-bottom-0">Procedencia</th>
-                      <th class="border-bottom-0">División</th>
-                      <th class="border-bottom-0 text-center">Adjuntos</th>
-                      <th class="border-bottom-0 text-center">Condición</th>
-                      <th class="text-end pe-4 border-bottom-0">Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody id="documentosTableBody">
-                    <tr><td colspan="11" class="text-center py-5 text-muted fw-medium">No hay documentos registrados en el sistema</td></tr>
-                  </tbody>
+                  <thead class="bg-light"><tr><th>N°</th><th>N° Control</th><th>N° Oficio</th><th>Asunto</th><th>Tipo</th><th>Fecha</th><th>Procedencia</th><th>División</th><th>Adjuntos</th><th>Condición</th><th class="text-end pe-4">Acciones</th></tr></thead>
+                  <tbody id="documentosTableBody"><tr><td colspan="11" class="text-center py-5 text-muted fw-medium">Cargando...</td></tr></tbody>
                 </table>
               </div>
             </div>
@@ -833,51 +333,19 @@
             <div class="card-header bg-white border-bottom py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
               <h5 class="mb-0 fw-bold"><i class="fas fa-paper-plane text-info me-2"></i>Registros de Salida</h5>
               <div class="d-flex gap-2">
-                <button type="button" class="btn btn-outline-danger fw-bold" onclick="window.exportPdfHojaEntrega('salida')">
-                  <i class="fas fa-file-pdf me-2"></i>Hoja PDF
-                </button>
-                <button type="button" class="btn btn-success fw-bold text-white shadow-sm" onclick="window.exportarExcelSalida()">
-                  <i class="fas fa-file-excel me-2"></i>Exportar Excel
-                </button>
+                <button type="button" class="btn btn-outline-danger fw-bold" onclick="window.exportPdfHojaEntrega('salida')"><i class="fas fa-file-pdf me-2"></i>Hoja PDF</button>
+                <button type="button" class="btn btn-success fw-bold text-white shadow-sm" onclick="window.exportarExcelSalida()"><i class="fas fa-file-excel me-2"></i>Exportar Excel</button>
               </div>
             </div>
             <div class="card-body p-4">
               <div class="row mb-4">
-                <div class="col-md-8">
-                  <div class="input-group input-group-lg shadow-sm">
-                    <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
-                    <input type="text" class="form-control border-start-0 ps-0" placeholder="Buscar por destino, oficio, descripción..." id="searchInputSalida" oninput="window.renderSalidaDocumentosTable()">
-                  </div>
-                </div>
-                <div class="col-md-4 mt-3 mt-md-0">
-                  <select class="form-select form-select-lg shadow-sm" id="filterDateSalida" onchange="window.renderSalidaDocumentosTable()">
-                    <option value="all">Filtro: Todas las fechas</option>
-                    <option value="today">Filtro: Hoy</option>
-                    <option value="week">Filtro: Esta semana</option>
-                    <option value="month">Filtro: Este mes</option>
-                  </select>
-                </div>
+                <div class="col-md-8"><div class="input-group input-group-lg shadow-sm"><span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span><input type="text" class="form-control border-start-0 ps-0" placeholder="Buscar por destino, oficio, descripción..." id="searchInputSalida" oninput="window.renderSalidaDocumentosTable()"></div></div>
+                <div class="col-md-4 mt-3 mt-md-0"><select class="form-select form-select-lg shadow-sm" id="filterDateSalida" onchange="window.renderSalidaDocumentosTable()"><option value="all">Todas las fechas</option><option value="today">Hoy</option><option value="week">Esta semana</option><option value="month">Este mes</option></select></div>
               </div>
-
               <div class="table-container border rounded-3">
                 <table class="table table-hover align-middle mb-0">
-                  <thead class="bg-light">
-                    <tr>
-                      <th class="border-bottom-0">N°</th>
-                      <th class="border-bottom-0">N° Oficio</th>
-                      <th class="border-bottom-0">Asunto</th>
-                      <th class="border-bottom-0">Tipo</th>
-                      <th class="border-bottom-0">Fecha Emisión</th>
-                      <th class="border-bottom-0">Destino</th>
-                      <th class="border-bottom-0">División</th>
-                      <th class="border-bottom-0 text-center">Adjuntos</th>
-                      <th class="border-bottom-0 text-center">Condición</th>
-                      <th class="text-end pe-4 border-bottom-0">Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody id="salidaDocumentosTableBody">
-                    <tr><td colspan="10" class="text-center py-5 text-muted fw-medium">No hay documentos de salida registrados</td></tr>
-                  </tbody>
+                  <thead class="bg-light"><tr><th>N°</th><th>N° Oficio</th><th>Asunto</th><th>Tipo</th><th>Fecha</th><th>Destino</th><th>División</th><th>Adjuntos</th><th>Condición</th><th class="text-end pe-4">Acciones</th></tr></thead>
+                  <tbody id="salidaDocumentosTableBody"><tr><td colspan="10" class="text-center py-5 text-muted fw-medium">Cargando...</td></tr></tbody>
                 </table>
               </div>
             </div>
@@ -898,90 +366,30 @@
         </div>
         <div class="modal-body p-4">
           <form id="editDocForm" onsubmit="event.preventDefault()">
-            <input type="hidden" id="editDocId">
-            <input type="hidden" id="editDocType">
-            
+            <input type="hidden" id="editDocId"><input type="hidden" id="editDocType">
             <div class="row mb-3">
-              <div class="col-md-8">
-                <label id="editLblDest" class="form-label fw-bold text-secondary">Procedencia / Destino</label>
-                <input type="text" class="form-control" id="editDestinatario" required>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label fw-bold text-secondary">Fecha</label>
-                <input type="text" class="form-control" id="editFecha" required>
-              </div>
+              <div class="col-md-8"><label id="editLblDest" class="form-label fw-bold text-secondary">Procedencia / Destino</label><input type="text" class="form-control" id="editDestinatario" required></div>
+              <div class="col-md-4"><label class="form-label fw-bold text-secondary">Fecha</label><input type="text" class="form-control" id="editFecha" required></div>
             </div>
-
             <div class="row mb-3">
-              <div class="col-md-4">
-                <label class="form-label fw-bold text-secondary">N° de Oficio</label>
-                <input type="text" class="form-control" id="editNumeroOficio">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label fw-bold text-secondary">Tipo</label>
+              <div class="col-md-4"><label class="form-label fw-bold text-secondary">N° de Oficio</label><input type="text" class="form-control" id="editNumeroOficio"></div>
+              <div class="col-md-4"><label class="form-label fw-bold text-secondary">Tipo</label>
                 <select class="form-select" id="editTipoDocumento">
-                  <option value="oficio">Oficio</option>
-                  <option value="memorandum">Memorándum</option>
-                  <option value="circular">Circular</option>
-                  <option value="informe">Informe</option>
-                  <option value="agenda">Agenda</option>
-                  <option value="radiograma">Radiograma</option>
-                  <option value="punto_cuenta">Punto de Cuenta</option>
-                  <option value="acta">Acta</option>
-                  <option value="otro">Otro</option>
+                  <option value="oficio">Oficio</option><option value="memorandum">Memorándum</option><option value="circular">Circular</option><option value="informe">Informe</option><option value="agenda">Agenda</option><option value="radiograma">Radiograma</option><option value="punto_cuenta">Punto de Cuenta</option><option value="acta">Acta</option><option value="otro">Otro</option>
                 </select>
               </div>
-              <div class="col-md-4">
-                <label class="form-label fw-bold text-secondary">Asunto</label>
+              <div class="col-md-4"><label class="form-label fw-bold text-secondary">Asunto</label>
                 <select class="form-select" id="editAsunto">
-                  <option value="presentacion">Presentación</option>
-                  <option value="informacion">Información</option>
-                  <option value="remision">Remisión</option>
-                  <option value="acuse">Acuse de Recibo</option>
-                  <option value="solicitud">Solicitud</option>
+                  <option value="presentacion">Presentación</option><option value="informacion">Información</option><option value="remision">Remisión</option><option value="acuse">Acuse de Recibo</option><option value="solicitud">Solicitud</option>
                 </select>
               </div>
             </div>
-
-            <div class="mb-3">
-              <label class="form-label fw-bold text-secondary">Resumen / Descripción</label>
-              <textarea class="form-control" id="editDescripcion" rows="3" required></textarea>
-            </div>
+            <div class="mb-3"><label class="form-label fw-bold text-secondary">Resumen / Descripción</label><textarea class="form-control" id="editDescripcion" rows="3" required></textarea></div>
           </form>
         </div>
         <div class="modal-footer bg-light">
           <button type="button" class="btn btn-outline-secondary fw-bold" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-primary fw-bold" onclick="window.guardarEdicionDocumento()"><i class="fas fa-save me-2"></i>Guardar Cambios</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Configuración -->
-  <div class="modal fade" id="configModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content border-0 shadow-lg">
-        <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title fw-bold"><i class="fas fa-cogs me-2"></i>Configuración del Sistema</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body p-4">
-          <h6 class="fw-bold mb-3 text-primary"><i class="fas fa-database me-2"></i>Respaldo y Mantenimiento</h6>
-          <p class="small text-muted mb-4">Puede descargar una copia de seguridad en formato JSON de todos los documentos y usuarios, o restaurarla si tuvo alguna pérdida de información.</p>
-          
-          <div class="d-grid gap-3">
-            <button type="button" class="btn btn-success fw-bold py-2 shadow-sm" onclick="window.exportarBackupJSON()">
-              <i class="fas fa-download me-2"></i>Descargar Respaldo JSON
-            </button>
-            <label class="btn btn-outline-primary fw-bold mb-0 py-2">
-              <i class="fas fa-upload me-2"></i>Restaurar Respaldo
-              <input type="file" accept=".json" class="d-none" onchange="window.importarBackupJSON(event)">
-            </label>
-            <hr class="my-2 text-muted opacity-25">
-            <button type="button" class="btn btn-danger fw-bold py-2 shadow-sm" onclick="window.limpiarBaseDeDatos()">
-              <i class="fas fa-trash-alt me-2"></i>Restablecer Base de Datos
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -997,21 +405,14 @@
         </div>
         <div class="modal-body p-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <p class="text-muted small mb-0 fw-medium">Gestione los accesos y credenciales operativos.</p>
+            <p class="text-muted small mb-0 fw-medium">Gestione los accesos al sistema centralizado.</p>
             <button type="button" class="btn btn-primary fw-bold shadow-sm" onclick="window.openCrearUsuarioModal()">
               <i class="fas fa-user-plus me-2"></i>Nuevo Usuario
             </button>
           </div>
           <div class="table-responsive border rounded-3">
             <table class="table table-hover align-middle mb-0">
-              <thead class="bg-light">
-                <tr>
-                  <th class="ps-4 border-bottom-0">Usuario</th>
-                  <th class="border-bottom-0">División Asignada</th>
-                  <th class="border-bottom-0">Rol / Nivel</th>
-                  <th class="text-end pe-4 border-bottom-0">Acciones</th>
-                </tr>
-              </thead>
+              <thead class="bg-light"><tr><th class="ps-4">Usuario</th><th>División Asignada</th><th>Rol</th><th class="text-end pe-4">Acciones</th></tr></thead>
               <tbody id="usuariosTableBody"></tbody>
             </table>
           </div>
@@ -1029,266 +430,152 @@
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body p-0 text-center d-flex justify-content-center align-items-center" style="min-height: 70vh;">
-          <img id="previewDocImage" src="" class="img-fluid d-none shadow" style="max-height: 75vh; border-radius: 8px;" alt="Vista previa de imagen">
+          <img id="previewDocImage" src="" class="img-fluid d-none shadow" style="max-height: 75vh; border-radius: 8px;" alt="Vista previa">
           <iframe id="previewDocFrame" src="" class="w-100 d-none" style="height: 75vh; border:none; background:white;"></iframe>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- SCRIPT JAVASCRIPT CON LÓGICA DE MYSQL Y GRÁFICAS INTEGRADAS -->
   <script>
-    // =========================================================================
-    // DECLARACIÓN DE VARIABLES Y ESTADOS
-    // =========================================================================
     const UI_MAPS = {
-      divisions: {
-        'subdireccion': 'SubDirección', 'personal_militar': 'Personal Militar',
-        'moral_disciplina': 'Moral y Disciplina', 'bienestar_social': 'Bienestar Social',
-        'personal_no_profesional': 'Personal No Profesional', 'personal_civil': 'Personal Civil', 'nomina': 'Nómina'
-      },
-      subjects: {
-        'presentacion': 'Presentación', 'informacion': 'Información',
-        'remision': 'Remisión', 'acuse': 'Acuse de Recibo', 'solicitud': 'Solicitud'
-      },
-      docTypes: {
-        'oficio': 'Oficio', 'memorandum': 'Memorándum', 'circular': 'Circular',
-        'informe': 'Informe', 'agenda': 'Agenda', 'radiograma': 'Radiograma',
-        'punto_cuenta': 'Punto de Cuenta', 'acta': 'Acta', 'otro': 'Otro'
-      }
+      divisions: { 'subdireccion': 'SubDirección', 'personal_militar': 'Personal Militar', 'moral_disciplina': 'Moral y Disciplina', 'bienestar_social': 'Bienestar Social', 'personal_no_profesional': 'Personal No Profesional', 'personal_civil': 'Personal Civil', 'nomina': 'Nómina' },
+      subjects: { 'presentacion': 'Presentación', 'informacion': 'Información', 'remision': 'Remisión', 'acuse': 'Acuse de Recibo', 'solicitud': 'Solicitud' },
+      docTypes: { 'oficio': 'Oficio', 'memorandum': 'Memorándum', 'circular': 'Circular', 'informe': 'Informe', 'agenda': 'Agenda', 'radiograma': 'Radiograma', 'punto_cuenta': 'Punto de Cuenta', 'acta': 'Acta', 'otro': 'Otro' }
     };
+    const accionesDisponibles = ["Urgente", "Acusar Recibo", "Analizar", "Archivar", "Asistir", "Autorizado", "Actualizar Base de Datos", "Coordinar", "Hablar Conmigo", "Informar a los Afectados", "Procesar"];
 
-    const accionesDisponibles = [
-      "Urgente", "Acusar Recibo", "Analizar", "Archivar", "Asistir", "Autorizado",
-      "Actualizar Base de Datos", "Coordinar", "Hablar Conmigo", "Informar a los Afectados", "Procesar"
-    ];
-
-    function safeJSON(key, fallback) {
-      try { const val = localStorage.getItem(key); return val ? JSON.parse(val) : fallback; } 
-      catch(e) { return fallback; }
-    }
-
-    let users = safeJSON('users', []);
+    let users = [];
     let currentUser = null; 
-    let documentos = safeJSON('documentos', []);
-    let documentosSalida = safeJSON('documentosSalida', []);
+    let documentos = [];
+    let documentosSalida = [];
     let currentFilesEntrada = [];
     let currentFilesSalida = [];
     let chartFlujo = null, chartCondicion = null, chartTipo = null, chartDivision = null, chartAsunto = null;
 
-    // Usuario administrador maestro garantizado
-    if (!users.some(u => u.username === 'admin')) {
-      users.push({ username: 'admin', password: 'admin123', role: 'admin', division: 'subdireccion' });
-      localStorage.setItem('users', JSON.stringify(users));
+    // --- CONEXIÓN API PHP (LARAGON) ---
+    async function fetchAllData() {
+        try {
+            const res = await fetch('api.php?action=get_all');
+            const data = await res.json();
+            
+            const docsChanged = JSON.stringify(documentos) !== JSON.stringify(data.documentos);
+            const salidaChanged = JSON.stringify(documentosSalida) !== JSON.stringify(data.documentosSalida);
+            
+            users = data.users || [];
+            documentos = data.documentos || [];
+            documentosSalida = data.documentosSalida || [];
+
+            if (currentUser && (docsChanged || salidaChanged)) {
+                window.renderDocumentosTable();
+                window.renderSalidaDocumentosTable();
+                window.updateDashboardCharts();
+            }
+        } catch (e) {
+            console.error("Error conectando a la BD MySQL:", e);
+        }
     }
 
-    // Funciones Auxiliares
     function getDivisionDisplay(key) { return UI_MAPS.divisions[key] || key || 'Sin asignar'; }
     function getAsuntoDisplay(key) { return UI_MAPS.subjects[key] || key || 'Sin especificar'; }
     function getTipoDocumentoDisplay(key) { return UI_MAPS.docTypes[key] || key || 'Sin especificar'; }
     function getNextControlEntrada() { return `${String(documentos.length + 1).padStart(3, '0')}-${new Date().getFullYear()}`; }
 
-    // --- CHECKBOXES RENDER ---
     function renderCheckboxes() {
       const render = (id, arr, isObj=false) => {
         const el = document.getElementById(id);
         if (!el) return;
-        if (isObj) {
-          el.innerHTML = Object.entries(arr).map(([k,v]) => `<div class="form-check"><input class="form-check-input shadow-sm" type="checkbox" value="${k}" id="${id}_${k}"><label class="form-check-label small fw-medium" for="${id}_${k}">${v}</label></div>`).join('');
-        } else {
-          el.innerHTML = arr.map((v,i) => `<div class="form-check"><input class="form-check-input shadow-sm" type="checkbox" value="${v}" id="${id}_${i}"><label class="form-check-label small fw-medium" for="${id}_${i}">${v}</label></div>`).join('');
-        }
+        if (isObj) el.innerHTML = Object.entries(arr).map(([k,v]) => `<div class="form-check"><input class="form-check-input shadow-sm" type="checkbox" value="${k}" id="${id}_${k}"><label class="form-check-label small fw-medium" for="${id}_${k}">${v}</label></div>`).join('');
+        else el.innerHTML = arr.map((v,i) => `<div class="form-check"><input class="form-check-input shadow-sm" type="checkbox" value="${v}" id="${id}_${i}"><label class="form-check-label small fw-medium" for="${id}_${i}">${v}</label></div>`).join('');
       };
-      render('accion', accionesDisponibles);
-      render('salidaAccion', accionesDisponibles);
-      render('asignacionUsuarios', UI_MAPS.divisions, true);
-      render('salidaAsignacionUsuarios', UI_MAPS.divisions, true);
+      render('accion', accionesDisponibles); render('salidaAccion', accionesDisponibles);
+      render('asignacionUsuarios', UI_MAPS.divisions, true); render('salidaAsignacionUsuarios', UI_MAPS.divisions, true);
     }
-
-    function getCheckedValues(containerId) {
-      const el = document.getElementById(containerId);
-      return el ? Array.from(el.querySelectorAll('input:checked')).map(c => c.value).join(', ') : '';
-    }
-
-    // =========================================================================
-    // FUNCIONES EXPUESTAS AL OBJETO WINDOW (PARA ONCLICK HTML)
-    // =========================================================================
+    function getCheckedValues(containerId) { const el = document.getElementById(containerId); return el ? Array.from(el.querySelectorAll('input:checked')).map(c => c.value).join(', ') : ''; }
 
     // --- AUTENTICACIÓN ---
     window.handleLogin = function(e) {
       e.preventDefault();
       const uInput = document.getElementById('loginUser').value.trim();
       const pInput = document.getElementById('loginPassword').value.trim();
-
-      // Validación
       const authUser = users.find(u => u.username.toLowerCase() === uInput.toLowerCase() && u.password === pInput);
-
       if (authUser) {
         currentUser = authUser;
         document.getElementById('loginError').classList.add('d-none');
         document.getElementById('loginScreen').classList.add('d-none');
         document.getElementById('appContent').classList.add('show');
-        document.getElementById('welcomeUserName').textContent = currentUser.username;
         window.showSection('homeSection');
-      } else {
-        document.getElementById('loginError').classList.remove('d-none');
-      }
+      } else { document.getElementById('loginError').classList.remove('d-none'); }
     };
+    window.logout = function() { currentUser = null; document.getElementById('loginUser').value = ''; document.getElementById('loginPassword').value = ''; document.getElementById('appContent').classList.remove('show'); document.getElementById('loginScreen').classList.remove('d-none'); };
 
-    window.logout = function() {
-      currentUser = null;
-      document.getElementById('loginUser').value = '';
-      document.getElementById('loginPassword').value = '';
-      document.getElementById('appContent').classList.remove('show');
-      document.getElementById('loginScreen').classList.remove('d-none');
-    };
-
-    // --- NAVEGACIÓN Y MENÚ ---
+    // --- NAVEGACIÓN ---
     window.showSection = function(id) {
-      ['homeSection', 'registerSection', 'salidaSection', 'documentsSection', 'salidaDocumentsSection'].forEach(s => {
-        const el = document.getElementById(s);
-        if(el) el.classList.add('d-none');
-      });
+      ['homeSection', 'registerSection', 'salidaSection', 'documentsSection', 'salidaDocumentsSection'].forEach(s => { const el = document.getElementById(s); if(el) el.classList.add('d-none'); });
       document.getElementById(id).classList.remove('d-none');
-
       document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
-      
-      const mapIdToNav = {
-        'homeSection': 'navInicio',
-        'registerSection': 'navNuevoDocumento',
-        'salidaSection': 'navDocumentoSalida',
-        'documentsSection': 'navDocumentos',
-        'salidaDocumentsSection': 'navDocumentosSalida'
-      }[id];
-      
-      if(mapIdToNav) {
-        const navEl = document.getElementById(mapIdToNav);
-        if(navEl) navEl.classList.add('active');
-      }
-
+      const mapIdToNav = { 'homeSection': 'navInicio', 'registerSection': 'navNuevoDocumento', 'salidaSection': 'navDocumentoSalida', 'documentsSection': 'navDocumentos', 'salidaDocumentsSection': 'navDocumentosSalida' }[id];
+      if(mapIdToNav) document.getElementById(mapIdToNav).classList.add('active');
       if(id === 'homeSection') window.updateDashboardCharts();
       if(id === 'documentsSection') window.renderDocumentosTable();
       if(id === 'salidaDocumentsSection') window.renderSalidaDocumentosTable();
       if(id === 'registerSection') document.getElementById('numeroControl').value = getNextControlEntrada();
     };
 
-    // --- MODALES CONFIG & USUARIOS ---
-    window.openConfigModal = function() { 
-      const modal = new bootstrap.Modal(document.getElementById('configModal'));
-      modal.show(); 
-    };
-
-    window.openUsuariosModal = function() { 
-      window.renderUsers(); 
-      const modal = new bootstrap.Modal(document.getElementById('usuariosModal'));
-      modal.show(); 
-    };
-
+    // --- USUARIOS ---
+    window.openUsuariosModal = function() { window.renderUsers(); new bootstrap.Modal(document.getElementById('usuariosModal')).show(); };
     window.renderUsers = function() {
       const tb = document.getElementById('usuariosTableBody');
       if(!tb) return;
-      tb.innerHTML = users.map((u, i) => `<tr>
-        <td class="fw-semibold ps-3">${u.username}</td>
-        <td>${getDivisionDisplay(u.division)}</td>
-        <td><span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25">${u.role.toUpperCase()}</span></td>
-        <td class="text-end pe-3">
-          ${u.username !== 'admin' ? `<button class="btn btn-sm btn-outline-danger py-1 px-2" onclick="window.deleteUser(${i})"><i class="fas fa-trash-alt"></i></button>` : '<span class="badge bg-secondary">Protegido</span>'}
-        </td>
+      tb.innerHTML = users.map((u) => `<tr>
+        <td class="fw-semibold ps-3">${u.username}</td><td>${getDivisionDisplay(u.division)}</td>
+        <td><span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25">${(u.role||'operador').toUpperCase()}</span></td>
+        <td class="text-end pe-3">${u.username !== 'admin' ? `<button class="btn btn-sm btn-outline-danger py-1 px-2" onclick="window.deleteUser('${u.username}')"><i class="fas fa-trash-alt"></i></button>` : '<span class="badge bg-secondary">Protegido</span>'}</td>
       </tr>`).join('');
     };
-
     window.openCrearUsuarioModal = function() {
       Swal.fire({
         title: 'Registrar Operador',
-        html: `
-          <input type="text" id="swalUser" class="form-control mb-3" placeholder="Nombre de Usuario">
-          <input type="password" id="swalPass" class="form-control mb-3" placeholder="Contraseña de Acceso">
-          <label class="form-label small fw-bold text-start w-100">División Asignada:</label>
-          <select id="swalDiv" class="form-select">
-            ${Object.entries(UI_MAPS.divisions).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}
-          </select>`,
-        showCancelButton: true,
-        confirmButtonText: 'Guardar Usuario',
-        cancelButtonText: 'Cancelar',
-        confirmButtonColor: '#0284c7',
-        preConfirm: () => {
-          const u = document.getElementById('swalUser').value.trim();
-          const p = document.getElementById('swalPass').value.trim();
-          const d = document.getElementById('swalDiv').value;
-          if (!u || !p) { Swal.showValidationMessage('Todos los campos son obligatorios'); return false; } 
-          return { username: u, password: p, division: d, role: 'operador' };
+        html: `<input type="text" id="swalUser" class="form-control mb-3" placeholder="Nombre de Usuario"><input type="password" id="swalPass" class="form-control mb-3" placeholder="Contraseña de Acceso"><label class="form-label small fw-bold text-start w-100">División Asignada:</label><select id="swalDiv" class="form-select">${Object.entries(UI_MAPS.divisions).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select>`,
+        showCancelButton: true, confirmButtonText: 'Guardar Usuario', confirmButtonColor: '#0284c7',
+        preConfirm: async () => {
+          const u = document.getElementById('swalUser').value.trim(); const p = document.getElementById('swalPass').value.trim(); const d = document.getElementById('swalDiv').value;
+          if (!u || !p) { Swal.showValidationMessage('Obligatorio'); return false; } 
+          await fetch('api.php?action=save_user', { method: 'POST', body: JSON.stringify({ username: u, password: p, division: d, role: 'operador' }) });
+          await fetchAllData(); window.renderUsers();
         }
-      }).then(r => { 
-        if (r.isConfirmed) { 
-          users.push(r.value); 
-          localStorage.setItem('users', JSON.stringify(users)); 
-          window.renderUsers(); 
-          Swal.fire({title: 'Creado', text: 'El usuario fue registrado con éxito', icon: 'success', timer: 2000}); 
-        } 
+      }).then(r => { if (r.isConfirmed) Swal.fire('Creado', 'Usuario registrado', 'success'); });
+    };
+    window.deleteUser = async function(username) { 
+      Swal.fire({ title:'¿Borrar usuario?', icon:'warning', showCancelButton:true, confirmButtonColor:'#dc2626' }).then(async r => {
+        if(r.isConfirmed){ await fetch('api.php?action=delete_user', { method: 'POST', body: JSON.stringify({ username }) }); await fetchAllData(); window.renderUsers(); }
       });
     };
 
-    window.deleteUser = function(idx) { 
-      Swal.fire({
-        title:'¿Borrar usuario?', icon:'warning', showCancelButton:true, confirmButtonText:'Sí, eliminar', confirmButtonColor:'#dc2626'
-      }).then(r=>{
-        if(r.isConfirmed){
-          users.splice(idx, 1); 
-          localStorage.setItem('users', JSON.stringify(users)); 
-          window.renderUsers(); 
-        }
-      });
+    // --- ARCHIVOS ---
+    window.setupDropzone = function(dzId, inId, type) {
+      const dz = document.getElementById(dzId); const inp = document.getElementById(inId);
+      if(!dz || !inp) return;
+      dz.onclick = () => inp.click();
+      dz.ondragover = (e) => { e.preventDefault(); dz.classList.add('dragover'); };
+      dz.ondragleave = () => dz.classList.remove('dragover');
+      dz.ondrop = (e) => { e.preventDefault(); dz.classList.remove('dragover'); if (e.dataTransfer.files.length) window.processFiles(e.dataTransfer.files, type); };
+      inp.onchange = (e) => { if (e.target.files.length) window.processFiles(e.target.files, type); };
     };
-
-    // --- GESTIÓN DE ADJUNTOS ---
-    window.setupDropzone = function(dropzoneId, inputId, type) {
-      const dropzone = document.getElementById(dropzoneId);
-      const input = document.getElementById(inputId);
-      if(!dropzone || !input) return;
-
-      dropzone.onclick = () => input.click();
-      dropzone.ondragover = (e) => { e.preventDefault(); dropzone.classList.add('dragover'); };
-      dropzone.ondragleave = () => dropzone.classList.remove('dragover');
-      dropzone.ondrop = (e) => {
-        e.preventDefault(); dropzone.classList.remove('dragover');
-        if (e.dataTransfer.files.length) window.processFiles(e.dataTransfer.files, type);
-      };
-      input.onchange = (e) => {
-        if (e.target.files.length) window.processFiles(e.target.files, type);
-      };
-    };
-
     window.compressImage = function(file) {
-      return new Promise(resolve => {
-        const r = new FileReader();
-        r.readAsDataURL(file);
-        r.onload = ev => {
-          const img = new Image();
-          img.src = ev.target.result;
-          img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const MAX = 1200;
-            let w = img.width, h = img.height;
-            if (w > h) { if (w > MAX) { h *= MAX/w; w = MAX; } } else { if (h > MAX) { w *= MAX/h; h = MAX; } }
-            canvas.width = w; canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, w, h);
-            resolve(canvas.toDataURL('image/jpeg', 0.75));
-          }
-        }
+      return new Promise(res => {
+        const r = new FileReader(); r.readAsDataURL(file);
+        r.onload = ev => { const img = new Image(); img.src = ev.target.result; img.onload = () => { const canvas = document.createElement('canvas'); const MAX = 1200; let w = img.width, h = img.height; if (w > h) { if (w > MAX) { h *= MAX/w; w = MAX; } } else { if (h > MAX) { w *= MAX/h; h = MAX; } } canvas.width = w; canvas.height = h; const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, w, h); res(canvas.toDataURL('image/jpeg', 0.75)); } }
       });
     };
-
     window.processFiles = async function(files, type) {
       for (const f of Array.from(files)) {
-        let d = '';
-        if(f.type.startsWith('image/') && f.size > 1000000) { d = await window.compressImage(f); } 
-        else { d = await new Promise(res => { const rd = new FileReader(); rd.onload = e => res(e.target.result); rd.readAsDataURL(f); }); }
-        if (type === 'entrada') currentFilesEntrada.push({ nombre: f.name, tipo: f.type, datos: d }); 
-        else currentFilesSalida.push({ nombre: f.name, tipo: f.type, datos: d });
+        let d = ''; if(f.type.startsWith('image/') && f.size > 1000000) d = await window.compressImage(f); else d = await new Promise(res => { const rd = new FileReader(); rd.onload = e => res(e.target.result); rd.readAsDataURL(f); });
+        if (type === 'entrada') currentFilesEntrada.push({ nombre: f.name, tipo: f.type, datos: d }); else currentFilesSalida.push({ nombre: f.name, tipo: f.type, datos: d });
       }
       window.renderFileBadges(type);
     };
-
     window.renderFileBadges = function(type) {
       const files = type === 'entrada' ? currentFilesEntrada : currentFilesSalida;
       const list = document.getElementById(type === 'entrada' ? 'previewListEntrada' : 'previewListSalida');
@@ -1297,215 +584,84 @@
       cont.classList.remove('d-none');
       list.innerHTML = files.map((f, i) => `<div class="attached-file-badge"><i class="fas ${f.tipo.includes('pdf')?'fa-file-pdf text-danger':'fa-image text-primary'}"></i><span>${f.nombre}</span><i class="fas fa-times-circle btn-remove ms-1" onclick="window.removeAttachedFile(${i}, '${type}')"></i></div>`).join('');
     };
-
-    window.removeAttachedFile = function(i, type) {
-      if (type === 'entrada') currentFilesEntrada.splice(i, 1); else currentFilesSalida.splice(i, 1);
-      window.renderFileBadges(type);
-    };
-
-    window.resetAttachedFiles = function(type) {
-      if (type === 'entrada') currentFilesEntrada = []; else currentFilesSalida = [];
-      window.renderFileBadges(type);
-    };
-
+    window.removeAttachedFile = function(i, type) { if (type === 'entrada') currentFilesEntrada.splice(i, 1); else currentFilesSalida.splice(i, 1); window.renderFileBadges(type); };
+    window.resetAttachedFiles = function(type) { if (type === 'entrada') currentFilesEntrada = []; else currentFilesSalida = []; window.renderFileBadges(type); };
     window.viewDocument = function(id, type) {
-      const list = type === 'entrada' ? documentos : documentosSalida;
-      const doc = list.find(d => d.id === id);
+      const list = type === 'entrada' ? documentos : documentosSalida; const doc = list.find(d => parseInt(d.id) === parseInt(id));
       if (!doc || !doc.archivos || !doc.archivos.length) return;
-      const file = doc.archivos[0];
-      const img = document.getElementById('previewDocImage');
-      const frame = document.getElementById('previewDocFrame');
+      const file = doc.archivos[0]; const img = document.getElementById('previewDocImage'); const frame = document.getElementById('previewDocFrame');
       document.getElementById('previewDocTitle').innerHTML = `<i class="fas ${file.tipo.includes('pdf')?'fa-file-pdf text-danger':'fa-image text-primary'} me-2"></i> ${file.nombre}`;
-
-      if (file.tipo && file.tipo.startsWith('image/')) {
-        img.src = file.datos; img.classList.remove('d-none'); frame.classList.add('d-none');
-      } else {
-        frame.src = file.datos; frame.classList.remove('d-none'); img.classList.add('d-none');
-      }
+      if (file.tipo && file.tipo.startsWith('image/')) { img.src = file.datos; img.classList.remove('d-none'); frame.classList.add('d-none'); } else { frame.src = file.datos; frame.classList.remove('d-none'); img.classList.add('d-none'); }
       new bootstrap.Modal(document.getElementById('previewDocModal')).show();
     };
 
-    // --- GUARDADO DE FORMULARIOS DE REGISTRO ---
-    window.guardarDocumentoEntrada = function() {
-      const form = document.getElementById('documentForm');
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+    // --- FORMULARIOS ---
+    window.guardarDocumentoEntrada = async function() {
+      const form = document.getElementById('documentForm'); if (!form.checkValidity()) { form.reportValidity(); return; }
       const doc = {
-        id: Date.now(),
-        destinatario: document.getElementById('destinatario').value,
-        fecha: document.getElementById('fecha').value,
-        numeroControl: document.getElementById('numeroControl').value || getNextControlEntrada(),
-        numeroOficio: document.getElementById('numeroOficio').value,
-        tipoDocumento: document.getElementById('tipoDocumento').value,
-        asunto: document.getElementById('asunto').value,
-        descripcion: document.getElementById('descripcion').value,
-        division: getCheckedValues('asignacionUsuarios'),
-        accion: getCheckedValues('accion'),
-        profesionalRegistro: document.getElementById('profesionalRegistro').value,
-        condicion: 'en_proceso', archivos: [...currentFilesEntrada]
+        id: Date.now(), tipo_flujo: 'entrada', destinatario: document.getElementById('destinatario').value, fecha: document.getElementById('fecha').value,
+        numeroControl: document.getElementById('numeroControl').value || getNextControlEntrada(), numeroOficio: document.getElementById('numeroOficio').value,
+        tipoDocumento: document.getElementById('tipoDocumento').value, asunto: document.getElementById('asunto').value,
+        descripcion: document.getElementById('descripcion').value, division: getCheckedValues('asignacionUsuarios'),
+        accion: getCheckedValues('accion'), profesionalRegistro: document.getElementById('profesionalRegistro').value,
+        condicion: 'en_proceso', archivos: currentFilesEntrada
       };
-      documentos.push(doc); localStorage.setItem('documentos', JSON.stringify(documentos));
-      form.reset(); window.resetAttachedFiles('entrada');
-      Swal.fire({title: 'Éxito', text: 'Documento de Entrada Registrado', icon: 'success', timer: 2000, showConfirmButton: false});
-      window.showSection('homeSection');
+      Swal.fire({ title: 'Guardando...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
+      await fetch('api.php?action=save_doc', { method: 'POST', body: JSON.stringify(doc) });
+      await fetchAllData(); form.reset(); window.resetAttachedFiles('entrada'); Swal.fire({title: 'Éxito', text: 'Entrada Registrada', icon: 'success', timer: 2000, showConfirmButton: false}); window.showSection('homeSection');
     };
-
-    window.guardarDocumentoSalida = function() {
-      const form = document.getElementById('salidaForm');
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+    window.guardarDocumentoSalida = async function() {
+      const form = document.getElementById('salidaForm'); if (!form.checkValidity()) { form.reportValidity(); return; }
       const doc = {
-        id: Date.now(),
-        destinatario: document.getElementById('salidaDestinatario').value,
-        fecha: document.getElementById('salidaFecha').value,
-        numeroOficio: document.getElementById('salidaNumeroOficio').value,
-        tipoDocumento: document.getElementById('salidaTipoDocumento').value,
-        asunto: document.getElementById('salidaAsunto').value,
-        descripcion: document.getElementById('salidaDescripcion').value,
-        division: getCheckedValues('salidaAsignacionUsuarios'),
-        accion: getCheckedValues('salidaAccion'),
-        profesional: document.getElementById('salidaProfesional').value,
-        fechaEntrega: document.getElementById('salidaFechaEntrega').value,
-        condicion: 'en_proceso', archivos: [...currentFilesSalida]
+        id: Date.now(), tipo_flujo: 'salida', destinatario: document.getElementById('salidaDestinatario').value, fecha: document.getElementById('salidaFecha').value,
+        numeroOficio: document.getElementById('salidaNumeroOficio').value, tipoDocumento: document.getElementById('salidaTipoDocumento').value,
+        asunto: document.getElementById('salidaAsunto').value, descripcion: document.getElementById('salidaDescripcion').value,
+        division: getCheckedValues('salidaAsignacionUsuarios'), accion: getCheckedValues('salidaAccion'), profesional: document.getElementById('salidaProfesional').value,
+        fechaEntrega: document.getElementById('salidaFechaEntrega').value, condicion: 'en_proceso', archivos: currentFilesSalida
       };
-      documentosSalida.push(doc); localStorage.setItem('documentosSalida', JSON.stringify(documentosSalida));
-      form.reset(); window.resetAttachedFiles('salida');
-      Swal.fire({title: 'Éxito', text: 'Documento de Salida Registrado', icon: 'success', timer: 2000, showConfirmButton: false});
-      window.showSection('homeSection');
+      Swal.fire({ title: 'Guardando...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
+      await fetch('api.php?action=save_doc', { method: 'POST', body: JSON.stringify(doc) });
+      await fetchAllData(); form.reset(); window.resetAttachedFiles('salida'); Swal.fire({title: 'Éxito', text: 'Salida Registrada', icon: 'success', timer: 2000, showConfirmButton: false}); window.showSection('homeSection');
     };
-
-    window.toggleCondicion = function(id, val, type) {
-      const list = type === 'entrada' ? documentos : documentosSalida;
-      const doc = list.find(d => d.id === id);
-      if (doc) { doc.condicion = val; localStorage.setItem(type === 'entrada' ? 'documentos' : 'documentosSalida', JSON.stringify(list)); window.updateDashboardCharts(); }
-    };
-
+    window.toggleCondicion = async function(id, condicion, type) { await fetch('api.php?action=update_condicion', { method: 'POST', body: JSON.stringify({ id, condicion }) }); await fetchAllData(); };
     window.deleteDoc = function(id, type) {
-      Swal.fire({ title: '¿Eliminar?', text: 'Borrarás este registro para siempre.', icon: 'warning', showCancelButton: true, confirmButtonText: 'Sí, borrar', confirmButtonColor: '#dc2626' }).then((res) => {
-        if (res.isConfirmed) {
-          if (type === 'entrada') { documentos = documentos.filter(d => d.id !== id); localStorage.setItem('documentos', JSON.stringify(documentos)); window.renderDocumentosTable(); }
-          else { documentosSalida = documentosSalida.filter(d => d.id !== id); localStorage.setItem('documentosSalida', JSON.stringify(documentosSalida)); window.renderSalidaDocumentosTable(); }
-          window.updateDashboardCharts(); Swal.fire({toast:true, position:'top-end', icon:'success', title:'Registro eliminado', showConfirmButton:false, timer:2000});
-        }
+      Swal.fire({ title: '¿Eliminar?', text: 'Borrarás este registro.', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc2626' }).then(async (res) => {
+        if (res.isConfirmed) { await fetch('api.php?action=delete_doc', { method: 'POST', body: JSON.stringify({ id }) }); await fetchAllData(); Swal.fire({toast:true, position:'top-end', icon:'success', title:'Eliminado', showConfirmButton:false, timer:2000}); }
       });
     };
-
     window.openEditarDocModal = function(id, type) {
-      const list = type === 'entrada' ? documentos : documentosSalida;
-      const doc = list.find(d => d.id === id);
-      if (!doc) return;
-      document.getElementById('editDocId').value = doc.id;
-      document.getElementById('editDocType').value = type;
-      document.getElementById('editLblDest').textContent = type === 'entrada' ? 'Procedencia' : 'Destino';
-      document.getElementById('editDestinatario').value = doc.destinatario || '';
-      document.getElementById('editFecha').value = doc.fecha || '';
-      document.getElementById('editNumeroOficio').value = doc.numeroOficio || '';
-      document.getElementById('editTipoDocumento').value = doc.tipoDocumento || 'oficio';
-      document.getElementById('editAsunto').value = doc.asunto || 'presentacion';
-      document.getElementById('editDescripcion').value = doc.descripcion || '';
-      const modal = new bootstrap.Modal(document.getElementById('editarDocModal'));
-      modal.show();
+      const list = type === 'entrada' ? documentos : documentosSalida; const doc = list.find(d => parseInt(d.id) === parseInt(id)); if (!doc) return;
+      document.getElementById('editDocId').value = doc.id; document.getElementById('editDocType').value = type; document.getElementById('editLblDest').textContent = type === 'entrada' ? 'Procedencia' : 'Destino';
+      document.getElementById('editDestinatario').value = doc.destinatario || ''; document.getElementById('editFecha').value = doc.fecha || ''; document.getElementById('editNumeroOficio').value = doc.numeroOficio || '';
+      document.getElementById('editTipoDocumento').value = doc.tipoDocumento || 'oficio'; document.getElementById('editAsunto').value = doc.asunto || 'presentacion'; document.getElementById('editDescripcion').value = doc.descripcion || '';
+      new bootstrap.Modal(document.getElementById('editarDocModal')).show();
     };
-
-    window.guardarEdicionDocumento = function() {
-      const id = parseInt(document.getElementById('editDocId').value);
-      const type = document.getElementById('editDocType').value;
-      const list = type === 'entrada' ? documentos : documentosSalida;
-      const index = list.findIndex(d => d.id === id);
-      if (index !== -1) {
-        list[index].destinatario = document.getElementById('editDestinatario').value;
-        list[index].fecha = document.getElementById('editFecha').value;
-        list[index].numeroOficio = document.getElementById('editNumeroOficio').value;
-        list[index].tipoDocumento = document.getElementById('editTipoDocumento').value;
-        list[index].asunto = document.getElementById('editAsunto').value;
-        list[index].descripcion = document.getElementById('editDescripcion').value;
-        localStorage.setItem(type === 'entrada' ? 'documentos' : 'documentosSalida', JSON.stringify(list));
-        
-        bootstrap.Modal.getInstance(document.getElementById('editarDocModal')).hide();
-        if (type === 'entrada') window.renderDocumentosTable(); else window.renderSalidaDocumentosTable();
-        window.updateDashboardCharts();
-        Swal.fire({title: 'Éxito', text: 'Documento actualizado', icon: 'success', timer: 1500, showConfirmButton: false});
-      }
+    window.guardarEdicionDocumento = async function() {
+      const doc = { id: document.getElementById('editDocId').value, tipo_flujo: document.getElementById('editDocType').value, destinatario: document.getElementById('editDestinatario').value, fecha: document.getElementById('editFecha').value, numeroOficio: document.getElementById('editNumeroOficio').value, tipoDocumento: document.getElementById('editTipoDocumento').value, asunto: document.getElementById('editAsunto').value, descripcion: document.getElementById('editDescripcion').value };
+      await fetch('api.php?action=update_doc', { method: 'POST', body: JSON.stringify(doc) }); bootstrap.Modal.getInstance(document.getElementById('editarDocModal')).hide(); await fetchAllData(); Swal.fire({title: 'Éxito', text: 'Actualizado', icon: 'success', timer: 1500, showConfirmButton: false});
     };
 
     // --- TABLAS Y FILTROS ---
     function isDateInRange(dateStr, filterType) {
-      if (filterType === 'all') return true;
-      if (!dateStr) return false;
-      const parts = dateStr.split('/');
-      if (parts.length !== 3) return true; 
-      const docDate = new Date(parts[2], parts[1] - 1, parts[0]);
-      const today = new Date(); today.setHours(0,0,0,0);
-      
+      if (filterType === 'all') return true; if (!dateStr) return false;
+      const parts = dateStr.split('/'); if (parts.length !== 3) return true; 
+      const docDate = new Date(parts[2], parts[1] - 1, parts[0]); const today = new Date(); today.setHours(0,0,0,0);
       if (filterType === 'today') return docDate.getTime() === today.getTime();
-      if (filterType === 'week') {
-          const firstDay = new Date(today); firstDay.setDate(today.getDate() - today.getDay() + 1);
-          const lastDay = new Date(today); lastDay.setDate(today.getDate() - today.getDay() + 7);
-          return docDate >= firstDay && docDate <= lastDay;
-      }
-      if (filterType === 'month') return docDate.getMonth() === new Date().getMonth() && docDate.getFullYear() === new Date().getFullYear();
-      return true;
+      if (filterType === 'week') { const firstDay = new Date(today); firstDay.setDate(today.getDate() - today.getDay() + 1); const lastDay = new Date(today); lastDay.setDate(today.getDate() - today.getDay() + 7); return docDate >= firstDay && docDate <= lastDay; }
+      if (filterType === 'month') return docDate.getMonth() === new Date().getMonth() && docDate.getFullYear() === new Date().getFullYear(); return true;
     }
-
     window.renderDocumentosTable = function() {
-      const tbody = document.getElementById('documentosTableBody');
-      const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
-      const filter = document.getElementById('filterDate')?.value || 'all';
-
-      let filtered = documentos.filter(d => {
-        const matchSearch = (d.destinatario||'').toLowerCase().includes(search) || (d.numeroOficio||'').toLowerCase().includes(search) || (d.numeroControl||'').toLowerCase().includes(search) || (d.descripcion||'').toLowerCase().includes(search);
-        const matchDate = isDateInRange(d.fecha, filter);
-        return matchSearch && matchDate;
-      });
-
-      tbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="11" class="text-center py-5 text-muted fw-medium"><i class="fas fa-folder-open fs-2 mb-2 d-block"></i>No se encontraron documentos registrados</td></tr>' :
-        filtered.map((d, i) => `<tr>
-          <td class="fw-medium">${i + 1}</td><td class="fw-bold text-primary">${d.numeroControl || '-'}</td><td class="fw-bold text-dark">${d.numeroOficio || '-'}</td>
-          <td>${getAsuntoDisplay(d.asunto)}</td><td>${getTipoDocumentoDisplay(d.tipoDocumento)}</td><td>${d.fecha}</td>
-          <td>${d.destinatario}</td><td>${getDivisionDisplay(d.division)}</td>
-          <td class="text-center">${d.archivos && d.archivos.length ? `<button class="btn btn-sm btn-outline-info py-0 px-2 fw-bold" onclick="window.viewDocument(${d.id}, 'entrada')"><i class="fas fa-paperclip me-1"></i>${d.archivos.length}</button>` : '<span class="text-muted small">-</span>'}</td>
-          <td>
-            <select class="form-select form-select-sm shadow-none fw-semibold border-0 ${d.condicion === 'archivado'?'bg-success bg-opacity-10 text-success':'bg-warning bg-opacity-10 text-warning'}" style="min-width:130px;" onchange="window.toggleCondicion(${d.id}, this.value, 'entrada')">
-              <option value="en_proceso" ${d.condicion !== 'archivado' ? 'selected' : ''}>⏳ En Proceso</option>
-              <option value="archivado" ${d.condicion === 'archivado' ? 'selected' : ''}>✅ Finalizado</option>
-            </select>
-          </td>
-          <td class="text-end text-nowrap pe-4">
-            <button class="btn btn-sm btn-light text-primary border py-1 px-2 me-1 shadow-sm" onclick="window.openEditarDocModal(${d.id}, 'entrada')" title="Editar Documento"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-sm btn-light text-danger border py-1 px-2 shadow-sm" onclick="window.deleteDoc(${d.id}, 'entrada')" title="Eliminar Registro"><i class="fas fa-trash-alt"></i></button>
-          </td>
-        </tr>`).join('');
+      const search = (document.getElementById('searchInput')?.value || '').toLowerCase(); const filter = document.getElementById('filterDate')?.value || 'all';
+      let filtered = documentos.filter(d => ((d.destinatario||'').toLowerCase().includes(search) || (d.numeroOficio||'').toLowerCase().includes(search) || (d.numeroControl||'').toLowerCase().includes(search) || (d.descripcion||'').toLowerCase().includes(search)) && isDateInRange(d.fecha, filter));
+      document.getElementById('documentosTableBody').innerHTML = filtered.length === 0 ? '<tr><td colspan="11" class="text-center py-5 text-muted">No se encontraron documentos</td></tr>' : filtered.map((d, i) => `<tr><td class="fw-medium">${i + 1}</td><td class="fw-bold text-primary">${d.numeroControl || '-'}</td><td class="fw-bold text-dark">${d.numeroOficio || '-'}</td><td>${getAsuntoDisplay(d.asunto)}</td><td>${getTipoDocumentoDisplay(d.tipoDocumento)}</td><td>${d.fecha}</td><td>${d.destinatario}</td><td>${getDivisionDisplay(d.division)}</td><td class="text-center">${d.archivos && d.archivos.length ? `<button class="btn btn-sm btn-outline-info py-0 px-2 fw-bold" onclick="window.viewDocument(${d.id}, 'entrada')"><i class="fas fa-paperclip me-1"></i>${d.archivos.length}</button>` : '-'}</td><td><select class="form-select form-select-sm shadow-none fw-semibold border-0 ${d.condicion === 'archivado'?'bg-success text-success':'bg-warning text-warning'}" onchange="window.toggleCondicion(${d.id}, this.value, 'entrada')"><option value="en_proceso" ${d.condicion !== 'archivado' ? 'selected' : ''}>⏳ En Proceso</option><option value="archivado" ${d.condicion === 'archivado' ? 'selected' : ''}>✅ Finalizado</option></select></td><td class="text-end text-nowrap pe-4"><button class="btn btn-sm btn-light text-primary border py-1 px-2" onclick="window.openEditarDocModal(${d.id}, 'entrada')"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-light text-danger border py-1 px-2" onclick="window.deleteDoc(${d.id}, 'entrada')"><i class="fas fa-trash-alt"></i></button></td></tr>`).join('');
     };
-
     window.renderSalidaDocumentosTable = function() {
-      const tbody = document.getElementById('salidaDocumentosTableBody');
-      const search = (document.getElementById('searchInputSalida')?.value || '').toLowerCase();
-      const filter = document.getElementById('filterDateSalida')?.value || 'all';
-
-      let filtered = documentosSalida.filter(d => {
-        const matchSearch = (d.destinatario||'').toLowerCase().includes(search) || (d.numeroOficio||'').toLowerCase().includes(search) || (d.descripcion||'').toLowerCase().includes(search);
-        const matchDate = isDateInRange(d.fecha, filter);
-        return matchSearch && matchDate;
-      });
-
-      tbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="10" class="text-center py-5 text-muted fw-medium"><i class="fas fa-folder-open fs-2 mb-2 d-block"></i>No se encontraron documentos de salida</td></tr>' :
-        filtered.map((d, i) => `<tr>
-          <td class="fw-medium">${i + 1}</td><td class="fw-bold text-dark">${d.numeroOficio || '-'}</td><td>${getAsuntoDisplay(d.asunto)}</td>
-          <td>${getTipoDocumentoDisplay(d.tipoDocumento)}</td><td>${d.fecha}</td><td>${d.destinatario}</td>
-          <td>${getDivisionDisplay(d.division)}</td>
-          <td class="text-center">${d.archivos && d.archivos.length ? `<button class="btn btn-sm btn-outline-info py-0 px-2 fw-bold" onclick="window.viewDocument(${d.id}, 'salida')"><i class="fas fa-paperclip me-1"></i>${d.archivos.length}</button>` : '<span class="text-muted small">-</span>'}</td>
-          <td>
-            <select class="form-select form-select-sm shadow-none fw-semibold border-0 ${d.condicion === 'archivado'?'bg-success bg-opacity-10 text-success':'bg-warning bg-opacity-10 text-warning'}" style="min-width:130px;" onchange="window.toggleCondicion(${d.id}, this.value, 'salida')">
-              <option value="en_proceso" ${d.condicion !== 'archivado' ? 'selected' : ''}>⏳ En Proceso</option>
-              <option value="archivado" ${d.condicion === 'archivado' ? 'selected' : ''}>✅ Finalizado</option>
-            </select>
-          </td>
-          <td class="text-end text-nowrap pe-4">
-            <button class="btn btn-sm btn-light text-primary border py-1 px-2 me-1 shadow-sm" onclick="window.openEditarDocModal(${d.id}, 'salida')" title="Editar Documento"><i class="fas fa-edit"></i></button>
-            <button class="btn btn-sm btn-light text-danger border py-1 px-2 shadow-sm" onclick="window.deleteDoc(${d.id}, 'salida')" title="Eliminar Registro"><i class="fas fa-trash-alt"></i></button>
-          </td>
-        </tr>`).join('');
+      const search = (document.getElementById('searchInputSalida')?.value || '').toLowerCase(); const filter = document.getElementById('filterDateSalida')?.value || 'all';
+      let filtered = documentosSalida.filter(d => ((d.destinatario||'').toLowerCase().includes(search) || (d.numeroOficio||'').toLowerCase().includes(search) || (d.descripcion||'').toLowerCase().includes(search)) && isDateInRange(d.fecha, filter));
+      document.getElementById('salidaDocumentosTableBody').innerHTML = filtered.length === 0 ? '<tr><td colspan="10" class="text-center py-5 text-muted">No se encontraron documentos</td></tr>' : filtered.map((d, i) => `<tr><td class="fw-medium">${i + 1}</td><td class="fw-bold text-dark">${d.numeroOficio || '-'}</td><td>${getAsuntoDisplay(d.asunto)}</td><td>${getTipoDocumentoDisplay(d.tipoDocumento)}</td><td>${d.fecha}</td><td>${d.destinatario}</td><td>${getDivisionDisplay(d.division)}</td><td class="text-center">${d.archivos && d.archivos.length ? `<button class="btn btn-sm btn-outline-info py-0 px-2 fw-bold" onclick="window.viewDocument(${d.id}, 'salida')"><i class="fas fa-paperclip me-1"></i>${d.archivos.length}</button>` : '-'}</td><td><select class="form-select form-select-sm shadow-none fw-semibold border-0 ${d.condicion === 'archivado'?'bg-success text-success':'bg-warning text-warning'}" onchange="window.toggleCondicion(${d.id}, this.value, 'salida')"><option value="en_proceso" ${d.condicion !== 'archivado' ? 'selected' : ''}>⏳ En Proceso</option><option value="archivado" ${d.condicion === 'archivado' ? 'selected' : ''}>✅ Finalizado</option></select></td><td class="text-end text-nowrap pe-4"><button class="btn btn-sm btn-light text-primary border py-1 px-2" onclick="window.openEditarDocModal(${d.id}, 'salida')"><i class="fas fa-edit"></i></button> <button class="btn btn-sm btn-light text-danger border py-1 px-2" onclick="window.deleteDoc(${d.id}, 'salida')"><i class="fas fa-trash-alt"></i></button></td></tr>`).join('');
     };
 
-    // --- GRÁFICOS ---
+    // --- GRÁFICOS Y ESTADÍSTICAS ---
     window.updateDashboardCharts = function() {
       const txt = '#0f172a', gr = 'rgba(0, 0, 0, 0.05)';
       const allDocs = [...documentos, ...documentosSalida];
@@ -1548,13 +704,9 @@
         const rec = [...allDocs].sort((a,b)=>b.id-a.id).slice(0,5);
         rT.innerHTML = rec.length ? rec.map(d => `<tr><td class="fw-bold text-dark ps-4">${d.numeroOficio||d.numeroControl||'-'}</td><td><span class="badge ${d.numeroControl?'bg-primary':'bg-info'} bg-opacity-10 ${d.numeroControl?'text-primary':'text-info'} border border-opacity-25 px-2 py-1">${d.numeroControl?'Entrada':'Salida'}</span></td><td class="fw-medium">${getAsuntoDisplay(d.asunto)}</td><td>${getTipoDocumentoDisplay(d.tipoDocumento)}</td><td><small class="text-muted fw-bold">${d.fecha}</small></td><td class="pe-4"><span class="badge-status ${d.condicion==='archivado'?'bg-archivado':'bg-proceso'} border">${d.condicion==='archivado'?'Finalizado':'En proceso'}</span></td></tr>`).join('') : '<tr><td colspan="6" class="text-center py-4 text-muted fw-medium">No hay actividad registrada</td></tr>';
       }
-      
-      let tot = 0; for(let x in localStorage){ if(localStorage.hasOwnProperty(x)) tot += (localStorage[x].length + x.length)*2; }
-      const pc = Math.min(100, Math.round((tot/(5*1024*1024))*100));
-      document.getElementById('storagePercent').textContent = pc + '%'; document.getElementById('storageBar').style.width = pc + '%';
     };
 
-    // --- EXPORTACIONES EXCELJS / PDF ---
+    // --- EXPORTAR EXCEL / PDF ---
     window.exportarExcelEntrada = async function() {
       if (!documentos.length) return Swal.fire('Aviso', 'No hay registros de Entrada', 'info');
       const wb = new ExcelJS.Workbook(); const ws = wb.addWorksheet('Entradas');
@@ -1562,10 +714,8 @@
       ws.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } }; ws.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0284C7' } };
       documentos.forEach((d, i) => { ws.addRow([i+1, d.numeroControl||'-', d.numeroOficio||'-', getAsuntoDisplay(d.asunto), getTipoDocumentoDisplay(d.tipoDocumento), d.fecha, d.destinatario, getDivisionDisplay(d.division), d.descripcion, d.condicion === 'archivado' ? 'Finalizado' : 'En proceso']); });
       ws.columns.forEach(c => c.width = 22);
-      const buf = await wb.xlsx.writeBuffer();
-      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([buf])); a.download = 'Registros_Entrada_Oficial.xlsx'; a.click();
+      const buf = await wb.xlsx.writeBuffer(); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([buf])); a.download = 'Registros_Entrada_Oficial.xlsx'; a.click();
     };
-
     window.exportarExcelSalida = async function() {
       if (!documentosSalida.length) return Swal.fire('Aviso', 'No hay registros de Salida', 'info');
       const wb = new ExcelJS.Workbook(); const ws = wb.addWorksheet('Salidas');
@@ -1573,10 +723,8 @@
       ws.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } }; ws.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0284C7' } };
       documentosSalida.forEach((d, i) => { ws.addRow([i+1, d.numeroOficio||'-', getAsuntoDisplay(d.asunto), getTipoDocumentoDisplay(d.tipoDocumento), d.fecha, d.destinatario, getDivisionDisplay(d.division), d.descripcion, d.condicion === 'archivado' ? 'Finalizado' : 'En proceso']); });
       ws.columns.forEach(c => c.width = 22);
-      const buf = await wb.xlsx.writeBuffer();
-      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([buf])); a.download = 'Registros_Salida_Oficial.xlsx'; a.click();
+      const buf = await wb.xlsx.writeBuffer(); const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([buf])); a.download = 'Registros_Salida_Oficial.xlsx'; a.click();
     };
-
     window.exportPdfHojaEntrega = function(type) {
       const isS = type === 'salida'; const list = isS ? documentosSalida : documentos;
       if (!list.length) return Swal.fire('Aviso', 'No hay registros', 'info');
@@ -1588,132 +736,19 @@
       pdf.save(`Hoja_${isS?'Salida':'Entrada'}_Oficial.pdf`);
     };
 
-    // --- JSON BACKUP (MANTENIMIENTO) ---
-    window.exportarBackupJSON = function() {
-      const blob = new Blob([JSON.stringify({documentos, documentosSalida, users})], {type: 'application/json'});
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `Copia_Seguridad_Documentos_${new Date().toISOString().slice(0, 10)}.json`; a.click(); 
-      Swal.fire({toast:true, position:'top-end', icon:'success', title:'Copia descargada', showConfirmButton:false, timer:2000});
-    };
-
-    window.importarBackupJSON = function(e) {
-      const f = e.target.files[0]; if(!f) return;
-      const r = new FileReader(); r.onload = ev => {
-        try {
-          const imp = JSON.parse(ev.target.result);
-          if (imp.documentos) {
-            documentos = imp.documentos; documentosSalida = imp.documentosSalida || []; users = imp.users || users;
-            localStorage.setItem('documentos', JSON.stringify(documentos)); localStorage.setItem('documentosSalida', JSON.stringify(documentosSalida)); localStorage.setItem('users', JSON.stringify(users));
-            window.updateDashboardCharts(); window.renderDocumentosTable(); window.renderSalidaDocumentosTable(); 
-            Swal.fire('Restauración Exitosa','Base de datos recuperada totalmente.','success');
-          }
-        } catch(err) { Swal.fire('Error','Archivo inválido, verifique el formato JSON.','error'); }
-      }; r.readAsText(f); e.target.value = '';
-    };
-
-    window.limpiarBaseDeDatos = function() {
-      Swal.fire({ title: '¿Peligro: Restablecer todo?', text: 'Esto borrará toda la información del sistema de manera irreversible.', icon: 'warning', showCancelButton: true, confirmButtonText: 'Sí, borrar todo', confirmButtonColor: '#dc2626' }).then(r => {
-        if(r.isConfirmed){ documentos=[]; documentosSalida=[]; localStorage.removeItem('documentos'); localStorage.removeItem('documentosSalida'); window.updateDashboardCharts(); window.renderDocumentosTable(); window.renderSalidaDocumentosTable(); Swal.fire('Limpieza Completada','El sistema ha sido reiniciado.','success'); }
-      });
-    };
-
-    // --- INICIALIZACIÓN DE ARRANQUE ---
+    // --- ARRANQUE ---
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. ELIMINAR BLANCOS AL LOGOTIPO (Flood Fill JS) Y MOSTRARLO INMEDIATO
-      const imgSources = [
-        'Gemini_Generated_Image_58dpan58dpan58dp_5.jpg',
-        'Gemini_Generated_Image_58dpan58dpan58dp_4.jpg',
-        'Gemini_Generated_Image_58dpan58dpan58dp.jpg',
-        'images.jpg',
-        'logo.png'
-      ];
-
-      const loginImg = document.getElementById('loginLogoImg');
-      const sidebarImg = document.getElementById('sidebarLogoImg');
-
-      function tryLoadCleanImage(index) {
-        if (index >= imgSources.length) return;
-        const src = imgSources[index];
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.onload = function() {
-          try {
-            const canvas = document.createElement('canvas');
-            const w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
-            canvas.width = w; canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-
-            const imgData = ctx.getImageData(0, 0, w, h);
-            const data = imgData.data;
-            const visited = new Uint8Array(w * h);
-            const queue = [];
-
-            function isOuterBackground(x, y) {
-              const idx = (y * w + x) * 4;
-              const r = data[idx], g = data[idx + 1], b = data[idx + 2];
-              return (r > 220 && g > 220 && b > 220) || (Math.abs(r-g)<15 && Math.abs(g-b)<15 && r>150);
-            }
-
-            const startPoints = [
-              [0, 0], [w - 1, 0], [0, h - 1], [w - 1, h - 1],
-              [Math.floor(w / 2), 0], [0, Math.floor(h / 2)],
-              [w - 1, Math.floor(h / 2)], [Math.floor(w / 2), h - 1]
-            ];
-
-            startPoints.forEach(([x, y]) => {
-              if (isOuterBackground(x, y)) {
-                queue.push(x, y);
-                visited[y * w + x] = 1;
-              }
-            });
-
-            let head = 0;
-            while (head < queue.length) {
-              const x = queue[head++], y = queue[head++];
-              data[(y * w + x) * 4 + 3] = 0;
-
-              [[x+1,y], [x-1,y], [x,y+1], [x,y-1]].forEach(([nx, ny]) => {
-                if (nx >= 0 && nx < w && ny >= 0 && ny < h) {
-                  const pos = ny * w + nx;
-                  if (!visited[pos] && isOuterBackground(nx, ny)) {
-                    visited[pos] = 1;
-                    queue.push(nx, ny);
-                  }
-                }
-              });
-            }
-
-            ctx.putImageData(imgData, 0, 0);
-            const cleanUrl = canvas.toDataURL('image/png');
-            loginImg.src = cleanUrl;
-            sidebarImg.src = cleanUrl;
-          } catch (err) {
-            loginImg.src = src; sidebarImg.src = src;
-          }
-        };
-        img.onerror = function() { tryLoadCleanImage(index + 1); };
-        img.src = src;
-      }
-      tryLoadCleanImage(0);
-
-      // 2. FORZAR PANTALLA DE LOGIN
       document.getElementById('loginScreen').classList.remove('d-none');
       document.getElementById('appContent').classList.remove('show');
-      currentUser = null;
+      
+      fetchAllData();
+      setInterval(fetchAllData, 5000); 
 
-      // 3. INICIALIZAR COMPONENTES
       setInterval(() => { const el = document.getElementById('homeDigitalClock'); if(el) el.textContent = new Date().toLocaleTimeString('es-ES'); }, 1000);
       flatpickr('#fecha, #salidaFecha, #salidaFechaEntrega, #editFecha', { dateFormat: 'd/m/Y', locale: 'es' });
-      
-      // 4. RENDERIZAR CHECKBOXES
       renderCheckboxes();
-
-      // 5. INICIALIZAR DROPZONES
       window.setupDropzone('dropzoneEntrada', 'fileInputEntrada', 'entrada');
       window.setupDropzone('dropzoneSalida', 'fileInputSalida', 'salida');
-
-      // 6. EVENTOS MENÚ
-      document.getElementById('sidebarToggle').onclick = () => document.querySelector('.sidebar').classList.toggle('show-sidebar');
     });
   </script>
 </body>
